@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
 
 @theme {
   --color-tertiary: #bec6e0;
@@ -102,10 +104,15 @@
 }
 
 .glass-card {
-    background: rgba(22, 22, 24, 0.7);
+    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(38, 38, 38, 1);
+    border: 1px solid #e5e7eb;
     transition: all 0.3s ease-in-out;
+}
+
+.dark .glass-card {
+    background: rgba(22, 22, 24, 0.7);
+    border: 1px solid rgba(38, 38, 38, 1);
 }
 
 .glass-card:hover {
@@ -114,9 +121,14 @@
 }
 
 .skill-node {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.dark .skill-node {
     background: #161618;
     border: 1px solid #262626;
-    transition: all 0.3s ease;
 }
 
 .skill-node:hover {
@@ -155,12 +167,20 @@
 }
 
 ::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.dark ::-webkit-scrollbar-track {
   background: #0A0A0B;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #262626;
+  background: #d1d5db;
   border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #262626;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -172,9 +192,15 @@ html {
 }
 
 body {
+  background-color: #ffffff;
+  color: #111827;
+  font-family: var(--font-manrope), sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
   background-color: #0A0A0B;
   color: var(--color-on-surface);
-  font-family: var(--font-manrope), sans-serif;
 }
 
 ::selection {

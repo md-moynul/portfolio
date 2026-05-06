@@ -13,8 +13,8 @@ export default function Home() {
     <main className="mt-20">
       <Navbar />
       <Hero />
-      <Education />
       <Skills />
+      <Education />
       <Projects />
       <Contact />
       <Footer />

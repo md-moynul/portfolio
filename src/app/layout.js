@@ -1,5 +1,6 @@
 import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -14,13 +15,13 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Portfolio | MERN Developer",
+  title: "Portfolio | MD Moynul Islam",
   description: "Architecting the Future of Web Apps. Senior Fullstack Engineer specialized in MERN applications.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`dark ${manrope.variable} ${inter.variable} scroll-smooth`}>
+    <html lang="en" className={`${manrope.variable} ${inter.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"
@@ -28,7 +29,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="antialiased">
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

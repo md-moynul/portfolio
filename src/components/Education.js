@@ -27,7 +27,7 @@ const Education = () => (
         {...fadeInUp}
         className="flex flex-col gap-8"
       >
-        <h2 className="font-h2 text-h2 text-white">Academic Foundation</h2>
+        <h2 className="font-h2 text-h2 text-gray-900 dark:text-white">Academic Foundation</h2>
         <div className="relative pl-8 border-l-2 border-surface-container-highest">
           <motion.div 
             initial={{ scale: 0 }}
@@ -36,8 +36,8 @@ const Education = () => (
           />
           <div className="glass-card p-card-padding rounded-xl">
             <span className="font-label-caps text-[#2D8CFF] mb-2 block">2022 — PRESENT</span>
-            <h3 className="font-h2 text-xl text-white mb-4">Diploma in Computer Science and Engineering</h3>
-            <p className="text-on-surface-variant">Focusing on core computing principles, data structures, and advanced algorithm design while mastering the modern web stack.</p>
+            <h3 className="font-h2 text-xl text-gray-900 dark:text-white mb-4">Diploma in Computer Science and Engineering</h3>
+            <p className="text-gray-600 dark:text-on-surface-variant">Focusing on core computing principles, data structures, and advanced algorithm design while mastering the modern web stack.</p>
           </div>
         </div>
       </motion.div>

@@ -3,10 +3,11 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Typewriter from 'typewriter-effect';
+import { FaLinkedin, FaGithub, FaFacebook, FaEnvelope } from "react-icons/fa";
 
 const Hero = () => (
-  <section className="min-h-screen flex flex-col items-center justify-center relative px-6 overflow-hidden bg-[#0A0A0B]" id="about">
-    <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-20 py-20">
+  <section className="min-h-screen flex flex-col items-center justify-center relative px-6 overflow-hidden bg-white dark:bg-[#0A0A0B] transition-colors" id="about">
+    <div className="max-w-7xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-between gap-20 py-20">
 
       {/* Left Content */}
       <motion.div
@@ -15,11 +16,11 @@ const Hero = () => (
         transition={{ duration: 0.8 }}
         className="flex flex-col items-start gap-6 z-10 w-full md:w-1/2"
       >
-        <span className="text-zinc-400 text-lg font-medium">Hey, I&apos;m</span>
-        <h1 className="text-6xl md:text-8xl font-bold text-white tracking-tight">
+        <span className="text-gray-500 dark:text-zinc-400 text-lg font-medium">Hey, I&apos;m</span>
+        <h1 className="text-6xl md:text-8xl font-bold text-gray-900 dark:text-white tracking-tight">
           Md. Moynul <span className="inline-block animate-wave text-4xl md:text-5xl">👋</span>
         </h1>
-        <div className="text-2xl md:text-3xl text-zinc-300 font-semibold flex items-center gap-3">
+        <div className="text-2xl md:text-3xl text-gray-700 dark:text-zinc-300 font-semibold flex items-center gap-3">
           <span>I am a</span>
           <span className="text-[#2D8CFF]">
             <Typewriter
@@ -33,26 +34,49 @@ const Hero = () => (
             />
           </span>
         </div>
-        <p className="text-zinc-500 max-w-lg text-lg leading-relaxed">
+        <p className="text-gray-600 dark:text-zinc-500 max-w-lg text-lg leading-relaxed">
           🚀 Turning ideas into Stunning Websites 💻 <br />
           | Available for projects and collaborations 🌟
         </p>
 
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="mt-4 px-10 py-5 bg-[#161618] border border-[#262626] rounded-full text-white font-bold flex items-center gap-3 hover:bg-[#262626] transition-all shadow-xl"
-        >
-          Say Hello <span className="material-symbols-outlined text-sm">send</span>
-        </motion.button>
+        <div className="mt-4 flex flex-wrap items-center gap-4">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-10 py-5 bg-gray-50 dark:bg-[#161618] border border-gray-200 dark:border-[#262626] rounded-full text-gray-900 dark:text-white font-bold flex items-center gap-3 hover:bg-gray-100 dark:hover:bg-[#262626] transition-all shadow-xl"
+          >
+            Say Hello <span className="material-symbols-outlined text-sm">send</span>
+          </motion.button>
+
+          <div className="flex items-center gap-3">
+            {[
+              { icon: <FaLinkedin className="text-xl" />, href: "https://linkedin.com", color: "hover:text-[#0A66C2]" },
+              { icon: <FaEnvelope className="text-xl" />, href: "mailto:your-email@gmail.com", color: "hover:text-[#EA4335]" },
+              { icon: <FaGithub className="text-xl" />, href: "https://github.com", color: "hover:text-white" },
+              { icon: <FaFacebook className="text-xl" />, href: "https://facebook.com", color: "hover:text-[#1877F2]" },
+            ].map((social, index) => (
+              <motion.a
+                key={index}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.9 }}
+                className={`w-14 h-14 bg-gray-50 dark:bg-[#161618] border border-gray-200 dark:border-[#262626] rounded-full flex justify-center items-center text-gray-500 dark:text-zinc-400 transition-colors duration-300 hover:bg-gray-100 dark:hover:bg-[#262626] shadow-xl ${social.color}`}
+              >
+                {social.icon}
+              </motion.a>
+            ))}
+          </div>
+        </div>
 
         {/* Scroll Down Indicator */}
-        <div className="mt-20 flex items-center gap-3 text-zinc-500">
-          <div className="w-6 h-10 border-2 border-zinc-700 rounded-full flex justify-center p-1">
+        <div className="mt-20 flex items-center gap-3 text-gray-400 dark:text-zinc-500">
+          <div className="w-6 h-10 border-2 border-gray-300 dark:border-zinc-700 rounded-full flex justify-center p-1">
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ repeat: Infinity, duration: 1.5 }}
-              className="w-1.5 h-1.5 bg-zinc-500 rounded-full"
+              className="w-1.5 h-1.5 bg-gray-400 dark:bg-zinc-500 rounded-full"
             />
           </div>
           <span className="text-sm font-medium">Scroll Down ↓</span>
@@ -69,7 +93,7 @@ const Hero = () => (
           className="relative w-72 h-72 md:w-[450px] md:h-[450px]"
         >
           {/* Main Blob Shape */}
-          <div className="absolute inset-0 bg-[#161618] border border-[#262626] rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] overflow-hidden animate-blob">
+          <div className="absolute inset-0 bg-black dark:bg-white border border-gray-300 dark:border-white/20 rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] overflow-hidden animate-blob transition-colors duration-500">
             <Image
               src="/moynul.png"
               alt="Moynul Profile"
@@ -84,14 +108,14 @@ const Hero = () => (
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
-            className="absolute -top-4 -right-4 bg-[#161618]/80 backdrop-blur-md border border-[#262626] p-4 rounded-2xl flex items-center gap-3 shadow-2xl z-20"
+            className="absolute -top-4 -right-4 bg-white/80 dark:bg-[#161618]/80 backdrop-blur-md border border-gray-200 dark:border-[#262626] p-4 rounded-2xl flex items-center gap-3 shadow-2xl z-20 transition-colors"
           >
             <div className="text-[#2D8CFF]">
               <span className="material-symbols-outlined">psychology</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-white font-bold text-xl">120+</span>
-              <span className="text-zinc-500 text-[10px] uppercase font-bold leading-none">Problem Solving</span>
+              <span className="text-gray-900 dark:text-white font-bold text-xl">120+</span>
+              <span className="text-gray-500 dark:text-zinc-500 text-[10px] uppercase font-bold leading-none">Problem Solving</span>
             </div>
           </motion.div>
 
@@ -100,14 +124,14 @@ const Hero = () => (
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.7 }}
-            className="absolute top-1/3 -left-12 bg-[#161618]/80 backdrop-blur-md border border-[#262626] p-4 rounded-2xl flex items-center gap-3 shadow-2xl z-20"
+            className="absolute top-1/3 -left-12 bg-white/80 dark:bg-[#161618]/80 backdrop-blur-md border border-gray-200 dark:border-[#262626] p-4 rounded-2xl flex items-center gap-3 shadow-2xl z-20 transition-colors"
           >
             <div className="text-[#2D8CFF]">
               <span className="material-symbols-outlined">work_history</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-white font-bold text-xl">3+</span>
-              <span className="text-zinc-500 text-[10px] uppercase font-bold leading-none">Year of Exp</span>
+              <span className="text-gray-900 dark:text-white font-bold text-xl">3+</span>
+              <span className="text-gray-500 dark:text-zinc-500 text-[10px] uppercase font-bold leading-none">Year of Exp</span>
             </div>
           </motion.div>
 
@@ -116,14 +140,14 @@ const Hero = () => (
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9 }}
-            className="absolute bottom-4 -left-4 bg-[#161618]/80 backdrop-blur-md border border-[#262626] p-4 rounded-2xl flex items-center gap-3 shadow-2xl z-20"
+            className="absolute bottom-4 -left-4 bg-white/80 dark:bg-[#161618]/80 backdrop-blur-md border border-gray-200 dark:border-[#262626] p-4 rounded-2xl flex items-center gap-3 shadow-2xl z-20 transition-colors"
           >
             <div className="text-[#2D8CFF]">
               <span className="material-symbols-outlined">rocket_launch</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-white font-bold text-xl">150+</span>
-              <span className="text-zinc-500 text-[10px] uppercase font-bold leading-none">Finished Projects</span>
+              <span className="text-gray-900 dark:text-white font-bold text-xl">150+</span>
+              <span className="text-gray-500 dark:text-zinc-500 text-[10px] uppercase font-bold leading-none">Finished Projects</span>
             </div>
           </motion.div>
 

@@ -6,36 +6,24 @@ import Typewriter from "typewriter-effect";
 import { FaLinkedin, FaGithub, FaFacebook, FaEnvelope } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 
-/* ─────────────────────────────────────────
-   Hook: reads dark class from <html>
-   Works with next-themes, manual toggle, etc.
-───────────────────────────────────────── */
+/* ── Auto-detect dark mode from <html class="dark"> ── */
 const useIsDark = () => {
   const [isDark, setIsDark] = useState(false);
-
   useEffect(() => {
-    // Initial check
     const check = () =>
       setIsDark(document.documentElement.classList.contains("dark"));
-
     check();
-
-    // Watch for class changes on <html>
     const observer = new MutationObserver(check);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["class"],
     });
-
     return () => observer.disconnect();
   }, []);
-
   return isDark;
 };
 
-/* ─────────────────────────────────────────
-   Animated canvas background
-───────────────────────────────────────── */
+/* ── Canvas background ── */
 const HeroBackground = ({ isDark }) => {
   const canvasRef = useRef(null);
 
@@ -43,20 +31,21 @@ const HeroBackground = ({ isDark }) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
-
     let animId;
-    let W = (canvas.width = window.innerWidth);
-    let H = (canvas.height = window.innerHeight);
+
+    // Size canvas to its parent container, not window
+    const parent = canvas.parentElement;
+    let W = (canvas.width = parent.offsetWidth);
+    let H = (canvas.height = parent.offsetHeight);
 
     const onResize = () => {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
+      W = canvas.width = parent.offsetWidth;
+      H = canvas.height = parent.offsetHeight;
     };
     window.addEventListener("resize", onResize);
 
-    const particles = Array.from({ length: 60 }, () => ({
-      x: Math.random() * W,
-      y: Math.random() * H,
+    const particles = Array.from({ length: 55 }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
       r: Math.random() * 1.5 + 0.4,
       vx: (Math.random() - 0.5) * 0.3,
       vy: (Math.random() - 0.5) * 0.3,
@@ -66,87 +55,67 @@ const HeroBackground = ({ isDark }) => {
     const FONT_SIZE = 13;
     const cols = Math.floor(W / FONT_SIZE);
     const drops = Array.from({ length: cols }, () => Math.random() * -100);
-    const chars = "01アイウエカキMERNJSAPI</>{}[]";
+    const chars = "01MERNJSAPIアイウ</>{}[]";
 
     const draw = () => {
       const accent = "45,140,255";
       const bg = isDark ? "8,8,12" : "248,250,255";
-      const bgAlpha = isDark ? 0.92 : 0.93;
-
-      ctx.fillStyle = `rgba(${bg},${bgAlpha})`;
+      ctx.fillStyle = `rgba(${bg},${isDark ? 0.92 : 0.93})`;
       ctx.fillRect(0, 0, W, H);
 
       // Grid
-      ctx.strokeStyle = `rgba(${accent},${isDark ? 0.04 : 0.06})`;
+      ctx.strokeStyle = `rgba(${accent},${isDark ? 0.04 : 0.05})`;
       ctx.lineWidth = 1;
-      const GRID = 60;
-      for (let x = 0; x < W; x += GRID) {
-        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
-      }
-      for (let y = 0; y < H; y += GRID) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
-      }
+      for (let x = 0; x < W; x += 60) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+      for (let y = 0; y < H; y += 60) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
 
       // Code rain
       ctx.font = `${FONT_SIZE}px monospace`;
       for (let i = 0; i < drops.length; i++) {
         const ch = chars[Math.floor(Math.random() * chars.length)];
-        const progress = drops[i] / (H / FONT_SIZE);
-        const alpha = Math.max(0, (isDark ? 0.18 : 0.1) - progress * 0.15);
+        const alpha = Math.max(0, (isDark ? 0.16 : 0.09) - (drops[i] / (H / FONT_SIZE)) * 0.15);
         ctx.fillStyle = `rgba(${accent},${alpha})`;
         ctx.fillText(ch, i * FONT_SIZE, drops[i] * FONT_SIZE);
         if (drops[i] * FONT_SIZE > H && Math.random() > 0.975) drops[i] = 0;
         drops[i] += 0.4;
       }
 
-      // Particles
+      // Particles + connections
       particles.forEach((p) => {
         p.x += p.vx; p.y += p.vy;
         if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
         if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${accent},${isDark ? p.alpha : p.alpha * 0.5})`;
+        ctx.fillStyle = `rgba(${accent},${isDark ? p.alpha : p.alpha * 0.4})`;
         ctx.fill();
       });
-
-      // Connect particles
-      for (let i = 0; i < particles.length; i++) {
+      for (let i = 0; i < particles.length; i++)
         for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
+          const d = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+          if (d < 100) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(${accent},${(isDark ? 0.08 : 0.04) * (1 - dist / 100)})`;
+            ctx.strokeStyle = `rgba(${accent},${(isDark ? 0.07 : 0.03) * (1 - d / 100)})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
           }
         }
-      }
 
-      // Radial glows
-      const g1 = ctx.createRadialGradient(W * 0.15, H * 0.3, 0, W * 0.15, H * 0.3, 320);
-      g1.addColorStop(0, `rgba(${accent},${isDark ? 0.07 : 0.04})`);
-      g1.addColorStop(1, "transparent");
-      ctx.fillStyle = g1; ctx.fillRect(0, 0, W, H);
-
-      const g2 = ctx.createRadialGradient(W * 0.85, H * 0.7, 0, W * 0.85, H * 0.7, 260);
-      g2.addColorStop(0, `rgba(${accent},${isDark ? 0.05 : 0.03})`);
-      g2.addColorStop(1, "transparent");
-      ctx.fillStyle = g2; ctx.fillRect(0, 0, W, H);
+      // Glows
+      [[W*0.1, H*0.25, 300], [W*0.9, H*0.75, 240]].forEach(([cx, cy, r]) => {
+        const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        g.addColorStop(0, `rgba(${accent},${isDark ? 0.07 : 0.04})`);
+        g.addColorStop(1, "transparent");
+        ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      });
 
       animId = requestAnimationFrame(draw);
     };
-
     draw();
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", onResize);
-    };
-  }, [isDark]); // re-renders when theme changes
+    return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", onResize); };
+  }, [isDark]);
 
   return (
     <canvas
@@ -157,39 +126,44 @@ const HeroBackground = ({ isDark }) => {
   );
 };
 
-/* ─────────────────────────────────────────
-   Hero Section
-───────────────────────────────────────── */
+/* ── Hero ── */
 const Hero = () => {
-  const isDark = useIsDark(); // auto-detects from <html class="dark">
+  const isDark = useIsDark();
+
+  const socials = [
+    { icon: <FaLinkedin className="text-lg" />, href: "https://linkedin.com",        hov: "hover:text-[#0A66C2]" },
+    { icon: <FaEnvelope className="text-lg" />, href: "mailto:your-email@gmail.com", hov: "hover:text-[#EA4335]" },
+    { icon: <FaGithub   className="text-lg" />, href: "https://github.com",          hov: "hover:text-gray-900 dark:hover:text-white" },
+    { icon: <FaFacebook className="text-lg" />, href: "https://facebook.com",        hov: "hover:text-[#1877F2]" },
+  ];
 
   return (
+    // ✅ No min-h-screen — let content define the height naturally
+    // ✅ pb-0 — no bottom padding pushing next section down
     <section
-      className="min-h-screen flex flex-col items-center justify-center relative px-6 overflow-hidden transition-colors duration-500 bg-white dark:bg-[#08080C]"
+      className="relative flex items-center justify-center px-6 overflow-hidden bg-white dark:bg-[#08080C] transition-colors duration-500 pt-24 pb-16"
       id="about"
     >
-      {/* Animated canvas bg */}
       <HeroBackground isDark={isDark} />
 
-      {/* Top & bottom fades */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white dark:from-[#08080C] to-transparent z-10 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white dark:from-[#08080C] to-transparent z-10 pointer-events-none" />
+      {/* Top fade only — no bottom fade to avoid gap illusion */}
+      <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-white dark:from-[#08080C] to-transparent z-10 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-between gap-20 py-20 relative z-20">
+      <div className="max-w-7xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-between gap-12 relative z-20">
 
-        {/* ── Left ── */}
+        {/* ── LEFT ── */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex flex-col items-start gap-6 z-10 w-full md:w-1/2"
+          className="flex flex-col items-start gap-5 w-full md:w-1/2"
         >
-          {/* Badge */}
+          {/* Available badge */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#2D8CFF]/30 bg-[#2D8CFF]/10 backdrop-blur-sm"
+            transition={{ delay: 0.15 }}
+            className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#2D8CFF]/30 bg-[#2D8CFF]/10 backdrop-blur-sm"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-emerald-400 text-xs font-semibold tracking-widest uppercase">
@@ -197,17 +171,20 @@ const Hero = () => {
             </span>
           </motion.div>
 
-          <span className="text-gray-500 dark:text-zinc-400 text-lg font-medium">
-            Hey, I&apos;m
-          </span>
+          {/* Name */}
+          <div>
+            <p className="text-gray-500 dark:text-zinc-400 text-base font-medium mb-1">
+              Hey, I&apos;m
+            </p>
+            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white tracking-tight leading-none">
+              Md. Moynul
+              <span className="inline-block ml-3 animate-wave text-3xl md:text-4xl">👋</span>
+            </h1>
+          </div>
 
-          <h1 className="text-6xl md:text-8xl font-bold text-gray-900 dark:text-white tracking-tight leading-none">
-            Md. Moynul{" "}
-            <span className="inline-block animate-wave text-4xl md:text-5xl">👋</span>
-          </h1>
-
-          <div className="text-2xl md:text-3xl text-gray-700 dark:text-zinc-300 font-semibold flex items-center gap-3 flex-wrap">
-            <span>I am a</span>
+          {/* Typewriter */}
+          <div className="text-xl md:text-2xl text-gray-700 dark:text-zinc-300 font-semibold flex items-center gap-2 flex-wrap">
+            <span>I&apos;m a</span>
             <span className="text-[#2D8CFF]">
               <Typewriter
                 options={{
@@ -226,51 +203,44 @@ const Hero = () => {
             </span>
           </div>
 
-          <p className="text-gray-600 dark:text-zinc-500 max-w-lg text-lg leading-relaxed">
-            🌱 Fresher MERN Stack Developer — passionate about building modern,
-            responsive web applications with MongoDB, Express, React &amp; Node.js.
-            <br />
-            Open to opportunities &amp; collaborations 🚀
+          {/* Short one-liner */}
+          <p className="text-gray-500 dark:text-zinc-500 text-base leading-relaxed max-w-md">
+            Fresher MERN developer from Rangpur, Bangladesh —
+            turning ideas into fast, responsive web apps. 🚀
           </p>
 
-          {/* Tech pills */}
-          <div className="flex flex-wrap gap-2">
-            {["MongoDB", "Express.js", "React", "Node.js", "Tailwind CSS"].map((tech) => (
-              <span
-                key={tech}
-                className="px-3 py-1 text-xs rounded-full border font-mono bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 text-gray-500 dark:text-zinc-400"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
+          {/* CTAs */}
+          <div className="flex flex-wrap items-center gap-3 mt-1">
+            <motion.a
+              href="#education"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="px-6 py-3 bg-[#2D8CFF] rounded-full text-white font-bold text-sm flex items-center gap-2 hover:bg-[#1a6fd8] transition-all shadow-[0_0_28px_rgba(45,140,255,0.35)]"
+            >
+              About Me
+              <span className="material-symbols-outlined text-sm">arrow_downward</span>
+            </motion.a>
 
-          <div className="mt-2 flex flex-wrap items-center gap-4">
             <motion.a
               href="mailto:your-email@gmail.com"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-10 py-4 bg-[#2D8CFF] rounded-full text-white font-bold flex items-center gap-3 hover:bg-[#1a6fd8] transition-all shadow-[0_0_30px_rgba(45,140,255,0.3)]"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="px-6 py-3 rounded-full text-gray-900 dark:text-white font-bold text-sm flex items-center gap-2 border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition-all backdrop-blur-sm"
             >
-              Say Hello{" "}
+              Hire Me
               <span className="material-symbols-outlined text-sm">send</span>
             </motion.a>
 
-            <div className="flex items-center gap-3">
-              {[
-                { icon: <FaLinkedin className="text-xl" />, href: "https://linkedin.com",        hov: "hover:text-[#0A66C2]" },
-                { icon: <FaEnvelope className="text-xl" />, href: "mailto:your-email@gmail.com", hov: "hover:text-[#EA4335]" },
-                { icon: <FaGithub   className="text-xl" />, href: "https://github.com",          hov: "hover:text-gray-900 dark:hover:text-white" },
-                { icon: <FaFacebook className="text-xl" />, href: "https://facebook.com",        hov: "hover:text-[#1877F2]" },
-              ].map((s, i) => (
+            <div className="flex items-center gap-2">
+              {socials.map((s, i) => (
                 <motion.a
                   key={i}
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileHover={{ scale: 1.12, y: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className={`w-12 h-12 rounded-full flex justify-center items-center border transition-all duration-300 backdrop-blur-sm bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 text-gray-500 dark:text-zinc-500 ${s.hov}`}
+                  className={`w-10 h-10 rounded-full flex justify-center items-center border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-white/5 text-gray-500 dark:text-zinc-500 transition-all duration-300 backdrop-blur-sm ${s.hov}`}
                 >
                   {s.icon}
                 </motion.a>
@@ -278,96 +248,87 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Scroll indicator */}
-          <div className="mt-16 flex items-center gap-3 text-gray-400 dark:text-zinc-600">
-            <div className="w-6 h-10 border-2 border-gray-300 dark:border-zinc-700 rounded-full flex justify-center p-1">
+          {/* Scroll down */}
+          <div className="mt-8 flex items-center gap-3 text-gray-400 dark:text-zinc-600">
+            <div className="w-5 h-9 border-2 border-gray-300 dark:border-zinc-700 rounded-full flex justify-center pt-1">
               <motion.div
-                animate={{ y: [0, 12, 0] }}
+                animate={{ y: [0, 10, 0] }}
                 transition={{ repeat: Infinity, duration: 1.5 }}
-                className="w-1.5 h-1.5 bg-[#2D8CFF] rounded-full"
+                className="w-1 h-1 bg-[#2D8CFF] rounded-full"
               />
             </div>
-            <span className="text-sm font-medium">Scroll Down ↓</span>
+            <span className="text-xs font-medium tracking-wide">Scroll to explore</span>
           </div>
         </motion.div>
 
-        {/* ── Right ── */}
+        {/* ── RIGHT ── */}
         <div className="relative w-full md:w-1/2 flex justify-center items-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative w-72 h-72 md:w-[420px] md:h-[420px]"
+            className="relative w-60 h-60 md:w-[380px] md:h-[380px]"
           >
             {/* Spinning rings */}
             <div
               className="absolute inset-0 rounded-full border border-[#2D8CFF]/20 scale-110 animate-spin"
-              style={{ animationDuration: "20s" }}
+              style={{ animationDuration: "22s" }}
             />
             <div
-              className="absolute inset-0 rounded-full border border-[#2D8CFF]/10 scale-125 animate-spin"
-              style={{ animationDuration: "35s", animationDirection: "reverse" }}
+              className="absolute inset-0 rounded-full border border-[#2D8CFF]/10 scale-[1.28] animate-spin"
+              style={{ animationDuration: "38s", animationDirection: "reverse" }}
             />
 
-            {/* Blob image */}
-            <div className="absolute inset-0 border border-[#2D8CFF]/30 rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] overflow-hidden animate-blob shadow-[0_0_60px_rgba(45,140,255,0.2)]">
-              <Image
-                src="/moynul.png"
-                alt="Moynul Profile"
-                fill
-                className="object-cover"
-              />
+            {/* Profile blob */}
+            <div className="absolute inset-0 border border-[#2D8CFF]/30 rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] overflow-hidden animate-blob shadow-[0_0_60px_rgba(45,140,255,0.18)]">
+              <Image src="/moynul.png" alt="Moynul" fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-white/30 dark:from-[#08080C]/40 to-transparent" />
             </div>
 
-            {/* Card — MERN */}
+            {/* Floating — MERN Stack */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5 }}
-              className="absolute -top-4 -right-4 bg-white/90 dark:bg-[#0d0d14]/90 backdrop-blur-md border border-[#2D8CFF]/30 p-4 rounded-2xl flex items-center gap-3 shadow-[0_0_20px_rgba(45,140,255,0.15)] z-20"
+              className="absolute -top-3 -right-3 bg-white/90 dark:bg-[#0d0d14]/90 backdrop-blur-md border border-[#2D8CFF]/25 px-4 py-3 rounded-2xl flex items-center gap-2 shadow-lg z-20"
             >
-              <div className="text-[#2D8CFF]">
-                <span className="material-symbols-outlined">code</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-xl text-gray-900 dark:text-white">MERN</span>
-                <span className="text-[10px] uppercase font-bold leading-none text-gray-400 dark:text-zinc-500">Stack Dev</span>
+              <span className="material-symbols-outlined text-[#2D8CFF] text-lg">code</span>
+              <div>
+                <p className="font-bold text-sm text-gray-900 dark:text-white leading-none">MERN Stack</p>
+                <p className="text-[10px] text-gray-400 dark:text-zinc-500 uppercase font-semibold mt-0.5">Developer</p>
               </div>
             </motion.div>
 
-            {/* Card — 2nd Year */}
+            {/* Floating — Diploma */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.7 }}
-              className="absolute top-1/3 -left-14 bg-white/90 dark:bg-[#0d0d14]/90 backdrop-blur-md border border-[#2D8CFF]/30 p-4 rounded-2xl flex items-center gap-3 shadow-[0_0_20px_rgba(45,140,255,0.15)] z-20"
+              className="absolute top-1/3 -left-14 bg-white/90 dark:bg-[#0d0d14]/90 backdrop-blur-md border border-[#2D8CFF]/25 px-4 py-3 rounded-2xl flex items-center gap-2 shadow-lg z-20"
             >
-              <div className="text-[#2D8CFF]">
-                <span className="material-symbols-outlined">menu_book</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-xl text-gray-900 dark:text-white">2nd</span>
-                <span className="text-[10px] uppercase font-bold leading-none text-gray-400 dark:text-zinc-500">Year Student</span>
+              <span className="material-symbols-outlined text-[#2D8CFF] text-lg">school</span>
+              <div>
+                <p className="font-bold text-sm text-gray-900 dark:text-white leading-none">Diploma CST</p>
+                <p className="text-[10px] text-gray-400 dark:text-zinc-500 uppercase font-semibold mt-0.5">2nd Year · RPI</p>
               </div>
             </motion.div>
 
-            {/* Card — Open to Work */}
+            {/* Floating — Open to Work */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
-              className="absolute bottom-2 -left-6 bg-white/90 dark:bg-[#0d0d14]/90 backdrop-blur-md border border-emerald-500/30 p-4 rounded-2xl flex items-center gap-3 shadow-[0_0_20px_rgba(52,211,153,0.1)] z-20"
+              className="absolute -bottom-2 -left-4 bg-white/90 dark:bg-[#0d0d14]/90 backdrop-blur-md border border-emerald-400/25 px-4 py-3 rounded-2xl flex items-center gap-2 shadow-lg z-20"
             >
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-              <div className="flex flex-col">
-                <span className="font-bold text-base text-gray-900 dark:text-white">Open to Work</span>
-                <span className="text-[10px] uppercase font-bold leading-none text-gray-400 dark:text-zinc-500">Fresher · MERN</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <div>
+                <p className="font-bold text-sm text-gray-900 dark:text-white leading-none">Open to Work</p>
+                <p className="text-[10px] text-gray-400 dark:text-zinc-500 uppercase font-semibold mt-0.5">Fresher · MERN</p>
               </div>
             </motion.div>
 
-            {/* Glow */}
-            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[#2D8CFF]/8 blur-[80px] rounded-full" />
+            {/* Bg glow */}
+            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[#2D8CFF]/6 blur-[80px] rounded-full" />
           </motion.div>
         </div>
       </div>

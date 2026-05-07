@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="mt-20">
+    <main className="">
       <Navbar />
       <Hero />
       <Skills />

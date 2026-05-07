@@ -12,6 +12,7 @@ const Contact = () => (
       >
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary-container/10 blur-[120px] rounded-full"></div>
         <div className="w-full lg:w-1/2 flex flex-col gap-6 relative z-10">
+        <p className="text-on-surface-variant text-body-lg">Currently available for internships, junior roles, or freelance projects. Let's build something great together.</p>
           <span className="font-label-caps text-primary">Get In Touch</span>
           <h2 className="font-display text-h1 text-gray-900 dark:text-white leading-tight">Ready to build something <span className="text-primary">extraordinary</span>?</h2>
           <p className="text-on-surface-variant text-body-lg">Currently available for senior-level opportunities or high-impact contract projects. Let's discuss your vision.</p>

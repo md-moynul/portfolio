@@ -26,7 +26,7 @@ const Projects = () => (
         {
           id: 0,
           title: "The Dragon News",
-          tags: ["REACT", "FIREBASE", "TAILWIND"],
+          tags: ["NEXT.JS", "MongoDB", "TAILWIND"],
           desc: "A comprehensive news portal featuring category-based filtering, real-time news marquees, and secure social authentication.",
           img: dragonNewsImg,
           link: "https://dragon-news-kohl-tau.vercel.app",
@@ -35,7 +35,7 @@ const Projects = () => (
         {
           id: 1,
           title: "Book Vibe",
-          tags: ["REACT", "TAILWIND", "NODE.JS"],
+          tags: ["REACT", "TAILWIND"],
           desc: "A vibrant book collection platform to discover, review, and track your favorite reads.",
           img: bookVibeImg,
           link: "https://books-vibe-2-j4eowzzu2-md-moynuls-projects.vercel.app/books",

@@ -24,7 +24,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable} scroll-smooth`} suppressHydrationWarning>
+    <html lang="en" className={`${manrope.variable} ${inter.variable} scroll-smooth `} suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"

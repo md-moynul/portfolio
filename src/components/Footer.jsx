@@ -8,7 +8,11 @@ const Footer = () => (
     <div className="relative z-10 max-w-7xl mx-auto px-8">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-12 md:gap-4 mb-16">
         <div className="flex flex-col gap-4">
-          <span className="text-2xl font-black tracking-tighter text-gray-900 dark:text-white">MOYNUL</span>
+          <img
+            src="/images/logo.png"
+            alt="Logo"
+            className="h-15 w-auto object-contain dark:brightness-110 mb-2"
+          />
           <p className="text-sm text-gray-500 dark:text-zinc-500 max-w-xs leading-relaxed">
             Architecting the future of web apps with clean code and intuitive design. Let&apos;s build something extraordinary.
           </p>

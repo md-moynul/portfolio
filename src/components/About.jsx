@@ -10,6 +10,8 @@ const About = () => {
       id="about"
     >
       <div className="max-w-7xl mx-auto">
+
+        {/* Section Header */}
         <motion.div {...fadeInUp} className="mb-16">
           <span className="font-label-caps text-primary mb-4 block uppercase tracking-[0.2em] text-xs">
             Behind the Code

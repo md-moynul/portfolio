@@ -19,7 +19,7 @@ const About = () => {
           <div className="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-6 mb-4">
             <h2 className="font-display text-h1 text-gray-900 dark:text-white leading-tight">
               Hi, I'm{" "}
-              <span className="text-gradient">Md. Moynul</span>
+              <span className="text-gradient">Md. Moynul Islam</span>
             </h2>
             <span className="text-3xl select-none">👋</span>
           </div>

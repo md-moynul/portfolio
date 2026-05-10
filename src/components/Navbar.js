@@ -6,23 +6,21 @@ import ThemeToggle from "./ThemeToggle";
 const Navbar = () => (
   <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-[#0A0A0B]/80 backdrop-blur-md border-b border-gray-200 dark:border-white/5 transition-colors">
     <div className="flex justify-between items-center px-6 py-3.5 max-w-7xl mx-auto w-full">
-      <motion.div 
+      <motion.span
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        className="flex items-center gap-1.5"
+        className="text-lg font-bold tracking-tighter text-gray-900 dark:text-white"
       >
-        <span className="text-xl font-medium tracking-tight text-gray-700 dark:text-zinc-300">MD.</span>
-        <span className="text-2xl font-light text-[#1EB4C3] -rotate-12">/</span>
-        <span className="text-xl font-black tracking-tight text-gray-900 dark:text-white">MOYNUL</span>
-      </motion.div>
+        MOYNUL
+      </motion.span>
       <div className="hidden md:flex gap-8 items-center">
         {['About', 'Education', 'Skills', 'Projects', 'Contact'].map((item, i) => (
-          <motion.a 
+          <motion.a
             key={item}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
-            className="font-manrope text-sm font-semibold tracking-wide text-gray-500 dark:text-zinc-400 hover:text-[#2D8CFF] dark:hover:text-[#2D8CFF] transition-all duration-300 relative group" 
+            className="font-manrope text-sm font-semibold tracking-wide text-gray-500 dark:text-zinc-400 hover:text-[#2D8CFF] dark:hover:text-[#2D8CFF] transition-all duration-300 relative group"
             href={`#${item.toLowerCase()}`}
           >
             {item}
@@ -32,7 +30,7 @@ const Navbar = () => (
       </div>
       <div className="flex items-center gap-4">
         <ThemeToggle />
-        <motion.button 
+        <motion.button
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           whileHover={{ scale: 1.05 }}

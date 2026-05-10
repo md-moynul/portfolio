@@ -4,7 +4,7 @@ const Footer = () => (
   <footer className="relative w-full py-20 border-t border-gray-200 dark:border-white/5 bg-white dark:bg-[#0A0A0B] overflow-hidden transition-colors">
     {/* Background Glow */}
     <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#2D8CFF]/5 blur-[120px] rounded-full"></div>
-    
+
     <div className="relative z-10 max-w-7xl mx-auto px-8">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-12 md:gap-4 mb-16">
         <div className="flex flex-col gap-4">
@@ -22,7 +22,7 @@ const Footer = () => (
               { icon: <FaTwitter />, href: "#" },
               { icon: <FaInstagram />, href: "#" },
             ].map((social, i) => (
-              <a 
+              <a
                 key={i}
                 href={social.href}
                 target="_blank"
@@ -35,8 +35,8 @@ const Footer = () => (
           </div>
           <div className="flex gap-8 flex-wrap">
             {['About', 'Education', 'Skills', 'Projects', 'Contact'].map((item) => (
-              <a 
-                key={item} 
+              <a
+                key={item}
                 href={`#${item.toLowerCase()}`}
                 className="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
@@ -51,12 +51,6 @@ const Footer = () => (
         <span className="text-[10px] text-gray-400 dark:text-zinc-600 uppercase tracking-[0.3em] font-semibold">
           © {new Date().getFullYear()} Md. Moynul Islam · All Rights Reserved
         </span>
-        <button 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex items-center gap-2 text-[10px] text-[#2D8CFF] font-bold uppercase tracking-[0.2em] hover:scale-105 transition-transform"
-        >
-          Back to Top <span className="material-symbols-outlined text-sm">arrow_upward</span>
-        </button>
         <div className="flex items-center gap-2 text-[10px] text-gray-400 dark:text-zinc-600 uppercase tracking-widest">
           <span>Built with</span>
           <span className="text-[#2D8CFF] font-bold">MERN STACK</span>

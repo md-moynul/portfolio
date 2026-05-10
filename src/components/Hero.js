@@ -6,148 +6,25 @@ import Typewriter from "typewriter-effect";
 import { FaLinkedin, FaGithub, FaFacebook, FaEnvelope } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 
-/* ── Auto-detect dark mode from <html class="dark"> ── */
-const useIsDark = () => {
-  const [isDark, setIsDark] = useState(false);
-  useEffect(() => {
-    const check = () =>
-      setIsDark(document.documentElement.classList.contains("dark"));
-    check();
-    const observer = new MutationObserver(check);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-    return () => observer.disconnect();
-  }, []);
-  return isDark;
-};
 
-/* ── Canvas background ── */
-const HeroBackground = ({ isDark }) => {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    let animId;
-
-    // Size canvas to its parent container, not window
-    const parent = canvas.parentElement;
-    let W = (canvas.width = parent.offsetWidth);
-    let H = (canvas.height = parent.offsetHeight);
-
-    const onResize = () => {
-      W = canvas.width = parent.offsetWidth;
-      H = canvas.height = parent.offsetHeight;
-    };
-    window.addEventListener("resize", onResize);
-
-    const particles = Array.from({ length: 55 }, () => ({
-      x: Math.random() * W, y: Math.random() * H,
-      r: Math.random() * 1.5 + 0.4,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      alpha: Math.random() * 0.5 + 0.1,
-    }));
-
-    const FONT_SIZE = 13;
-    const cols = Math.floor(W / FONT_SIZE);
-    const drops = Array.from({ length: cols }, () => Math.random() * -100);
-    const chars = "01MERNJSAPIアイウ</>{}[]";
-
-    const draw = () => {
-      const accent = "45,140,255";
-      const bg = isDark ? "8,8,12" : "248,250,255";
-      ctx.fillStyle = `rgba(${bg},${isDark ? 0.92 : 0.93})`;
-      ctx.fillRect(0, 0, W, H);
-
-      // Grid
-      ctx.strokeStyle = `rgba(${accent},${isDark ? 0.04 : 0.05})`;
-      ctx.lineWidth = 1;
-      for (let x = 0; x < W; x += 60) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
-      for (let y = 0; y < H; y += 60) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
-
-      // Code rain
-      ctx.font = `${FONT_SIZE}px monospace`;
-      for (let i = 0; i < drops.length; i++) {
-        const ch = chars[Math.floor(Math.random() * chars.length)];
-        const alpha = Math.max(0, (isDark ? 0.16 : 0.09) - (drops[i] / (H / FONT_SIZE)) * 0.15);
-        ctx.fillStyle = `rgba(${accent},${alpha})`;
-        ctx.fillText(ch, i * FONT_SIZE, drops[i] * FONT_SIZE);
-        if (drops[i] * FONT_SIZE > H && Math.random() > 0.975) drops[i] = 0;
-        drops[i] += 0.4;
-      }
-
-      // Particles + connections
-      particles.forEach((p) => {
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
-        if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${accent},${isDark ? p.alpha : p.alpha * 0.4})`;
-        ctx.fill();
-      });
-      for (let i = 0; i < particles.length; i++)
-        for (let j = i + 1; j < particles.length; j++) {
-          const d = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
-          if (d < 100) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(${accent},${(isDark ? 0.07 : 0.03) * (1 - d / 100)})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-
-      // Glows
-      [[W*0.1, H*0.25, 300], [W*0.9, H*0.75, 240]].forEach(([cx, cy, r]) => {
-        const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        g.addColorStop(0, `rgba(${accent},${isDark ? 0.07 : 0.04})`);
-        g.addColorStop(1, "transparent");
-        ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-      });
-
-      animId = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", onResize); };
-  }, [isDark]);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 0 }}
-    />
-  );
-};
 
 /* ── Hero ── */
 const Hero = () => {
-  const isDark = useIsDark();
 
   const socials = [
-    { icon: <FaLinkedin className="text-lg" />, href: "https://linkedin.com",        hov: "hover:text-[#0A66C2]" },
+    { icon: <FaLinkedin className="text-lg" />, href: "https://linkedin.com", hov: "hover:text-[#0A66C2]" },
     { icon: <FaEnvelope className="text-lg" />, href: "mailto:your-email@gmail.com", hov: "hover:text-[#EA4335]" },
-    { icon: <FaGithub   className="text-lg" />, href: "https://github.com",          hov: "hover:text-gray-900 dark:hover:text-white" },
-    { icon: <FaFacebook className="text-lg" />, href: "https://facebook.com",        hov: "hover:text-[#1877F2]" },
+    { icon: <FaGithub className="text-lg" />, href: "https://github.com", hov: "hover:text-gray-900 dark:hover:text-white" },
+    { icon: <FaFacebook className="text-lg" />, href: "https://facebook.com", hov: "hover:text-[#1877F2]" },
   ];
 
   return (
     // ✅ No min-h-screen — let content define the height naturally
     // ✅ pb-0 — no bottom padding pushing next section down
     <section
-      className="relative flex items-center justify-center px-6 overflow-hidden bg-white dark:bg-[#08080C] transition-colors duration-500 pt-24 pb-16"
-      id="about"
+      className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center px-5 md:px-6 overflow-hidden bg-transparent pt-28 md:pt-24 pb-16"
+      id="home"
     >
-      <HeroBackground isDark={isDark} />
-
-      {/* Top fade only — no bottom fade to avoid gap illusion */}
-      <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-white dark:from-[#08080C] to-transparent z-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-between gap-12 relative z-20">
 
@@ -173,12 +50,12 @@ const Hero = () => {
 
           {/* Name */}
           <div>
-            <p className="text-gray-500 dark:text-zinc-400 text-base font-medium mb-1">
-              Hey, I&apos;m
+            <p className="text-gray-500 dark:text-zinc-400 text-sm font-semibold mb-2 uppercase tracking-[0.2em]">
+              Welcome to my portfolio
             </p>
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white tracking-tight leading-none">
-              Md. Moynul
-              <span className="inline-block ml-3 animate-wave text-3xl md:text-4xl">👋</span>
+            <h1 className="text-5xl md:text-8xl font-bold text-gray-900 dark:text-white tracking-tight leading-[1.1] md:leading-[0.9]">
+              <span className="text-gradient">Md. Moynul</span>
+              <span className="inline-block ml-3 animate-wave text-3xl md:text-5xl">👋</span>
             </h1>
           </div>
 
@@ -204,20 +81,20 @@ const Hero = () => {
           </div>
 
           {/* Short one-liner */}
-          <p className="text-gray-500 dark:text-zinc-500 text-base leading-relaxed max-w-md">
-            Fresher MERN developer from Rangpur, Bangladesh —
-            turning ideas into fast, responsive web apps. 🚀
+          <p className="text-gray-500 dark:text-zinc-400 text-lg leading-relaxed max-w-lg">
+            A results-driven <span className="text-gray-900 dark:text-white font-semibold">MERN Stack Developer</span> from Rangpur, Bangladesh.
+            I architect high-performance web applications with a focus on clean code and intuitive design. 🚀
           </p>
 
           {/* CTAs */}
           <div className="flex flex-wrap items-center gap-3 mt-1">
             <motion.a
-              href="#education"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-              className="px-6 py-3 bg-[#2D8CFF] rounded-full text-white font-bold text-sm flex items-center gap-2 hover:bg-[#1a6fd8] transition-all shadow-[0_0_28px_rgba(45,140,255,0.35)]"
+              href="#projects"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-8 py-4 bg-[#2D8CFF] rounded-full text-white font-bold text-sm flex items-center gap-2 hover:bg-[#1a6fd8] transition-all shadow-[0_10px_20px_rgba(45,140,255,0.25)] hover:shadow-[0_15px_30px_rgba(45,140,255,0.35)]"
             >
-              About Me
+              Explore My Work
               <span className="material-symbols-outlined text-sm">arrow_downward</span>
             </motion.a>
 

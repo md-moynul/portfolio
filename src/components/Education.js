@@ -13,13 +13,14 @@ const Education = () => (
         viewport={{ once: true }}
         className="relative"
       >
-        <div className="aspect-square glass-card rounded-2xl overflow-hidden">
+        <div className="aspect-square glass-card rounded-2xl overflow-hidden group">
           <Image
-            alt="Developer Workspace"
-            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVxuNnob9ek-olqzWSPreB9cqiRMvJ7spDobyXFmAMikydE2BWfz-qxUAt3t3mduN7eboU3GzbD3YxtziqgUrsDQU841YY98DIduxNEvkbyAXQ18qcCHvTT07zVRTP07DNg3D3tfkTEhTzoilZ5JgPy9yeQyCo8UP8ACcpa_ufWJQkUXF7aiBJZCPq6s-64BloP0jBdbJ9Im-EOoNuKgJ0-IDAyL2TMqqDmPiPN0pE-WcSg8zhDHjDicpovwieY4PRna8BscQMzVY"
-            width={600}
-            height={600}
+            alt="Academic Foundation - Computer Science Study"
+            className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
+            src="/images/education.png"
+            width={800}
+            height={800}
+            priority
           />
         </div>
       </motion.div>

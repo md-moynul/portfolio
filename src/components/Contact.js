@@ -1,74 +1,145 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { fadeInUp } from "./Animations";
 
-const Contact = () => (
-  <section className="bg-surface-dim pt-section-padding" id="contact">
-    <div className="max-w-7xl mx-auto px-6 mb-20">
-      <motion.div 
-        {...fadeInUp}
-        className="bg-surface-container p-12 rounded-3xl border border-[#262626] flex flex-col lg:flex-row gap-16 relative overflow-hidden"
-      >
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary-container/10 blur-[120px] rounded-full"></div>
-        <div className="w-full lg:w-1/2 flex flex-col gap-6 relative z-10">
-        <p className="text-on-surface-variant text-body-lg">Currently available for internships, junior roles, or freelance projects. Let's build something great together.</p>
-          <span className="font-label-caps text-primary">Get In Touch</span>
-          <h2 className="font-display text-h1 text-gray-900 dark:text-white leading-tight">Ready to build something <span className="text-primary">extraordinary</span>?</h2>
-          <p className="text-on-surface-variant text-body-lg">Currently available for senior-level opportunities or high-impact contract projects. Let's discuss your vision.</p>
-          <div className="mt-8 space-y-4">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-primary">
-                <span className="material-symbols-outlined">mail</span>
+const Contact = () => {
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [status, setStatus] = useState({ type: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    // Mocking an API call
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setStatus({ type: "success", message: "Message sent successfully!" });
+      setFormState({ name: "", email: "", subject: "", message: "" });
+      setTimeout(() => setStatus({ type: "", message: "" }), 5000);
+    }, 1500);
+  };
+
+  const handleChange = (e) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <section className="bg-transparent py-16 md:py-32 transition-colors" id="contact">
+      <div className="max-w-7xl mx-auto px-5 mb-16 md:mb-20">
+        <motion.div
+          {...fadeInUp}
+          className="bg-white dark:bg-surface-container p-6 md:p-16 rounded-3xl border border-gray-200 dark:border-white/5 flex flex-col lg:flex-row gap-10 lg:gap-20 relative overflow-hidden shadow-sm dark:shadow-2xl"
+        >
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary-container/10 blur-[120px] rounded-full"></div>
+          <div className="w-full lg:w-1/2 flex flex-col gap-6 relative z-10">
+            <span className="font-label-caps text-primary text-[10px] tracking-[0.2em]">Get In Touch</span>
+            <h2 className="font-display text-4xl md:text-h1 text-gray-900 dark:text-white leading-tight">Ready to build something <span className="text-gradient">extraordinary</span>?</h2>
+            <p className="text-gray-600 dark:text-zinc-400 text-base md:text-body-lg">Currently available for internships, junior roles, or freelance projects. Let&apos;s build something great together.</p>
+            <div className="mt-8 space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-surface-container-highest flex items-center justify-center text-primary">
+                  <span className="material-symbols-outlined">mail</span>
+                </div>
+                <div>
+                  <span className="block font-label-caps text-gray-500 dark:text-on-surface-variant text-[10px]">Email Me</span>
+                  <span className="text-gray-900 dark:text-white font-bold">mmmdmoynulislam@gmail.com</span>
+                </div>
               </div>
-              <div>
-                <span className="block font-label-caps text-on-surface-variant">Email Me</span>
-                <span className="text-gray-900 dark:text-white font-bold">mmmdmoynulislam@gmail.com</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-primary">
-                <span className="material-symbols-outlined">location_on</span>
-              </div>
-              <div>
-                <span className="block font-label-caps text-on-surface-variant">Location</span>
-                <span className="text-gray-900 dark:text-white font-bold">Rangpur, Bangladesh</span>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-surface-container-highest flex items-center justify-center text-primary">
+                  <span className="material-symbols-outlined">location_on</span>
+                </div>
+                <div>
+                  <span className="block font-label-caps text-gray-500 dark:text-on-surface-variant text-[10px]">Location</span>
+                  <span className="text-gray-900 dark:text-white font-bold">Rangpur, Bangladesh</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <form className="w-full lg:w-1/2 flex flex-col gap-4 relative z-10" onSubmit={(e) => e.preventDefault()}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form className="w-full lg:w-1/2 flex flex-col gap-4 relative z-10" onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <label className="font-label-caps text-[10px] text-gray-500 dark:text-zinc-500 ml-2">Name</label>
+                <input
+                  name="name"
+                  value={formState.name}
+                  onChange={handleChange}
+                  required
+                  className="bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-sm rounded-xl px-5 py-3 md:px-6 md:py-4 text-sm md:text-base text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-zinc-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all shadow-sm"
+                  placeholder="John Doe"
+                  type="text"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="font-label-caps text-[10px] text-gray-500 dark:text-zinc-500 ml-2">Email</label>
+                <input
+                  name="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                  required
+                  className="bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-sm rounded-xl px-5 py-3 md:px-6 md:py-4 text-sm md:text-base text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-zinc-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all shadow-sm"
+                  placeholder="john@example.com"
+                  type="email"
+                />
+              </div>
+            </div>
             <div className="flex flex-col gap-2">
-              <label className="font-label-caps text-[10px] text-zinc-500 ml-2">Name</label>
-              <input className="bg-gray-50 dark:bg-[#050505] border border-gray-200 dark:border-[#262626] rounded-xl px-6 py-4 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-primary-container transition-colors" placeholder="John Doe" type="text" />
+              <label className="font-label-caps text-[10px] text-gray-500 dark:text-zinc-500 ml-2">Subject</label>
+              <input
+                name="subject"
+                value={formState.subject}
+                onChange={handleChange}
+                required
+                className="bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-sm rounded-xl px-5 py-3 md:px-6 md:py-4 text-sm md:text-base text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-zinc-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all shadow-sm"
+                placeholder="Project Inquiry"
+                type="text"
+              />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="font-label-caps text-[10px] text-gray-500 dark:text-zinc-500 ml-2">Email</label>
-              <input className="bg-gray-50 dark:bg-[#050505] border border-gray-200 dark:border-[#262626] rounded-xl px-6 py-4 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-primary-container transition-colors" placeholder="john@example.com" type="email" />
+              <label className="font-label-caps text-[10px] text-gray-500 dark:text-zinc-500 ml-2">Message</label>
+              <textarea
+                name="message"
+                value={formState.message}
+                onChange={handleChange}
+                required
+                className="bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-sm rounded-xl px-5 py-3 md:px-6 md:py-4 text-sm md:text-base text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-zinc-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all shadow-sm resize-none"
+                placeholder="Tell me about your project..."
+                rows="5"
+              ></textarea>
             </div>
-          </div>
-          <div className="flex flex-col gap-2">
-            <label className="font-label-caps text-[10px] text-gray-500 dark:text-zinc-500 ml-2">Subject</label>
-            <input className="bg-gray-50 dark:bg-[#050505] border border-gray-200 dark:border-[#262626] rounded-xl px-6 py-4 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-primary-container transition-colors" placeholder="Project Inquiry" type="text" />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label className="font-label-caps text-[10px] text-gray-500 dark:text-zinc-500 ml-2">Message</label>
-            <textarea className="bg-gray-50 dark:bg-[#050505] border border-gray-200 dark:border-[#262626] rounded-xl px-6 py-4 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-primary-container transition-colors resize-none" placeholder="Tell me about your project..." rows="5"></textarea>
-          </div>
-          <motion.button 
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="bg-primary text-on-primary-fixed font-label-caps py-5 rounded-xl mt-2 hover:bg-primary-fixed transition-all flex items-center justify-center gap-3" 
-            type="submit"
-          >
-            Send Message
-            <span className="material-symbols-outlined">send</span>
-          </motion.button>
-        </form>
-      </motion.div>
-    </div>
-  </section>
-);
+            <motion.button
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              disabled={isSubmitting}
+              className="bg-[#2D8CFF] text-white font-bold uppercase tracking-widest py-5 rounded-xl mt-4 hover:bg-[#1a6fd8] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed shadow-[0_10px_20px_rgba(45,140,255,0.25)] hover:shadow-[0_15px_30px_rgba(45,140,255,0.35)]"
+              type="submit"
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
+              <span className={`material-symbols-outlined text-sm ${isSubmitting ? "animate-spin" : ""}`}>
+                {isSubmitting ? "sync" : "send"}
+              </span>
+            </motion.button>
+            {status.message && (
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`text-center text-sm font-medium mt-2 ${status.type === "success" ? "text-emerald-500" : "text-red-500"}`}
+              >
+                {status.message}
+              </motion.p>
+            )}
+          </form>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
 
 export default Contact;

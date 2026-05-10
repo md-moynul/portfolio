@@ -4,26 +4,29 @@ import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => (
-  <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-[#0A0A0B]/80 backdrop-blur-md border-b border-gray-200 dark:border-[#262626] transition-colors">
-    <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto w-full">
-      <motion.span 
+  <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-[#0A0A0B]/80 backdrop-blur-md border-b border-gray-200 dark:border-white/5 transition-colors">
+    <div className="flex justify-between items-center px-6 py-3.5 max-w-7xl mx-auto w-full">
+      <motion.div 
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        className="text-lg font-bold tracking-tighter text-gray-900 dark:text-white"
+        className="flex items-center gap-1.5"
       >
-        MERN.DEV
-      </motion.span>
+        <span className="text-xl font-medium tracking-tight text-gray-700 dark:text-zinc-300">MD.</span>
+        <span className="text-2xl font-light text-[#1EB4C3] -rotate-12">/</span>
+        <span className="text-xl font-black tracking-tight text-gray-900 dark:text-white">MOYNUL</span>
+      </motion.div>
       <div className="hidden md:flex gap-8 items-center">
-        {['About', 'Skills', 'Education', 'Projects', 'Contact'].map((item, i) => (
+        {['About', 'Education', 'Skills', 'Projects', 'Contact'].map((item, i) => (
           <motion.a 
             key={item}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
-            className="font-manrope text-sm font-medium tracking-wide text-gray-500 dark:text-zinc-400 hover:text-[#2D8CFF] dark:hover:text-[#2D8CFF] transition-all duration-300" 
+            className="font-manrope text-sm font-semibold tracking-wide text-gray-500 dark:text-zinc-400 hover:text-[#2D8CFF] dark:hover:text-[#2D8CFF] transition-all duration-300 relative group" 
             href={`#${item.toLowerCase()}`}
           >
             {item}
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#2D8CFF] transition-all duration-300 group-hover:w-full"></span>
           </motion.a>
         ))}
       </div>

@@ -1,6 +1,9 @@
 import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import CustomCursor from "@/components/CustomCursor";
+import ScrollProgress from "@/components/ScrollProgress";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -16,7 +19,7 @@ const inter = Inter({
 
 export const metadata = {
   title: "Portfolio | MD Moynul Islam",
-  description: "Architecting the Future of Web Apps. Senior Fullstack Engineer specialized in MERN applications.",
+  description: "Architecting the Future of Web Apps. MERN Stack Developer specialized in building fast, responsive web applications.",
 };
 
 export default function RootLayout({ children }) {
@@ -28,8 +31,11 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         />
       </head>
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <ScrollProgress />
+          <ScrollToTop />
+          <CustomCursor />
           {children}
         </ThemeProvider>
       </body>

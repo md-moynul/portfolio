@@ -14,8 +14,8 @@ const Projects = () => (
       className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8"
     >
       <div className="max-w-2xl">
-        <h2 className="font-h2 text-h2 text-gray-900 dark:text-white mb-4">Selected Works</h2>
-        <p className="text-gray-600 dark:text-on-surface-variant">Exploring the intersection of design and development through real-world applications.</p>
+        <h2 className="font-h2 text-h2 text-gray-900 dark:text-white mb-4">Recent  Projects</h2>
+        <p className="text-gray-600 dark:text-zinc-400">A collection of technical solutions where architecture meets aesthetics.</p>
       </div>
       <div className="hidden md:block">
         <span className="text-[#2D8CFF] font-bold text-sm tracking-widest">SCROLL TO EXPLORE →</span>
@@ -69,17 +69,17 @@ const Projects = () => (
           <div className="h-64 overflow-hidden relative">
             <Image
               alt={project.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-500"
               src={project.img}
               width={800}
               height={400}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-white/90 dark:from-[#0A0A0B] to-transparent opacity-90 dark:opacity-60 transition-colors"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-30 group-hover:opacity-0 transition-opacity duration-500"></div>
           </div>
           <div className="p-8 flex flex-col flex-grow">
-            <div className="flex gap-2 mb-4">
+            <div className="flex gap-3 mb-5">
               {project.tags.map(tag => (
-                <span key={tag} className="text-[10px] font-bold tracking-widest text-[#2D8CFF] bg-[#2D8CFF]/10 px-2 py-1 rounded">{tag}</span>
+                <span key={tag} className="text-[10px] font-bold tracking-[0.2em] text-[#2D8CFF] uppercase">{tag}</span>
               ))}
             </div>
             <h3 className="font-h2 text-xl text-gray-900 dark:text-white mb-3">{project.title}</h3>
@@ -95,12 +95,12 @@ const Projects = () => (
               </a>
               {project.github && (
                 <a
-                  className="px-4 py-2 border border-gray-300 dark:border-[#262626] rounded-full text-gray-600 dark:text-zinc-300 font-bold text-xs flex items-center gap-2 group/link hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-all"
+                  className="px-5 py-2.5 border border-gray-300 dark:border-white/10 rounded-full text-gray-600 dark:text-zinc-300 font-bold text-xs flex items-center gap-2 group/link hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all"
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  GitHub <FaGithub className="text-sm group-hover/link:scale-110 transition-transform" />
+                  GitHub <FaGithub className="text-sm group-hover/link:rotate-12 transition-transform" />
                 </a>
               )}
             </div>

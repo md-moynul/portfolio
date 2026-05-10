@@ -39,7 +39,7 @@ const Navbar = () => {
           <img
             src="/images/logo.png"
             alt="Logo"
-            className="h-15 w-auto object-contain dark:brightness-110 transition-all"
+            className="h-10 md:h-13 w-auto object-contain dark:brightness-110 transition-all"
           />
         </motion.div>
 

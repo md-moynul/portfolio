@@ -8,7 +8,7 @@ import dragonNewsImg from "../assets/dragon news.png";
 import { FaGithub } from "react-icons/fa";
 
 const Projects = () => (
-  <section className="py-[120px] px-8 max-w-7xl mx-auto" id="projects">
+  <section className="py-16 md:py-[120px] px-5 md:px-8 max-w-7xl mx-auto" id="projects">
     <motion.div
       {...fadeInUp}
       className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8"
@@ -76,14 +76,14 @@ const Projects = () => (
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-30 group-hover:opacity-0 transition-opacity duration-500"></div>
           </div>
-          <div className="p-8 flex flex-col flex-grow">
+          <div className="p-6 md:p-8 flex flex-col flex-grow">
             <div className="flex gap-3 mb-5">
               {project.tags.map(tag => (
                 <span key={tag} className="text-[10px] font-bold tracking-[0.2em] text-[#2D8CFF] uppercase">{tag}</span>
               ))}
             </div>
             <h3 className="font-h2 text-xl text-gray-900 dark:text-white mb-3">{project.title}</h3>
-            <p className="text-gray-600 dark:text-on-surface-variant mb-6 text-sm">{project.desc}</p>
+            <p className="text-gray-600 dark:text-on-surface-variant mb-6 text-sm text-left md:text-justify hyphens-auto">{project.desc}</p>
             <div className="flex items-center gap-4 mt-auto">
               <a
                 className="px-4 py-2 border border-gray-300 dark:border-[#262626] rounded-full text-gray-600 dark:text-zinc-300 font-bold text-xs flex items-center gap-2 group/link hover:border-[#2D8CFF] dark:hover:border-[#2D8CFF] hover:text-[#2D8CFF] dark:hover:text-[#2D8CFF] hover:bg-[#2D8CFF]/10 transition-all"

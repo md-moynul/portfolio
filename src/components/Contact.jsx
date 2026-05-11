@@ -17,13 +17,35 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Mocking an API call
-    setTimeout(() => {
+    
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE",
+          ...formState,
+          subject: `New Portfolio Message: ${formState.subject}`,
+          from_name: formState.name,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setStatus({ type: "success", message: "Message sent successfully! I'll get back to you soon." });
+        setFormState({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setStatus({ type: "error", message: result.message || "Something went wrong. Please try again." });
+      }
+    } catch (error) {
+      setStatus({ type: "error", message: "Network error. Please check your connection." });
+    } finally {
       setIsSubmitting(false);
-      setStatus({ type: "success", message: "Message sent successfully!" });
-      setFormState({ name: "", email: "", subject: "", message: "" });
       setTimeout(() => setStatus({ type: "", message: "" }), 5000);
-    }, 1500);
+    }
   };
 
   const handleChange = (e) => {
@@ -41,7 +63,7 @@ const Contact = () => {
           <div className="w-full lg:w-1/2 flex flex-col gap-6 relative z-10">
             <span className="font-label-caps text-primary text-[10px] tracking-[0.2em]">Get In Touch</span>
             <h2 className="font-display text-4xl md:text-h1 text-gray-900 dark:text-white leading-tight">Ready to build something <span className="text-gradient">extraordinary</span>?</h2>
-            <p className="text-gray-600 dark:text-zinc-400 text-base md:text-body-lg">Currently available for internships, junior roles, or freelance projects. Let&apos;s build something great together.</p>
+            <p className="text-gray-600 dark:text-zinc-400 text-base md:text-body-lg text-left md:text-justify hyphens-auto">Currently available for internships, junior roles, or freelance projects. Let&apos;s build something great together.</p>
             <div className="mt-8 space-y-4">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-surface-container-highest flex items-center justify-center text-primary">

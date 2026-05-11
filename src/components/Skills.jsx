@@ -16,8 +16,8 @@ import {
 import { fadeInUp, staggerContainer } from "./Animations";
 
 const Skills = () => (
-  <section className="py-[120px] bg-transparent transition-colors" id="skills">
-    <div className="max-w-7xl mx-auto px-8">
+  <section className="py-16 md:py-[120px] bg-transparent transition-colors" id="skills">
+    <div className="max-w-7xl mx-auto px-5 md:px-8">
       <motion.div 
         {...fadeInUp}
         className="text-center mb-20"
@@ -48,7 +48,7 @@ const Skills = () => (
             key={index}
             variants={fadeInUp}
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="skill-node p-8 rounded-2xl flex flex-col items-center gap-4 text-center group"
+            className="skill-node p-5 md:p-8 rounded-2xl flex flex-col items-center gap-4 text-center group"
           >
             <skill.Icon 
               className={`text-5xl transition-all duration-300 group-hover:scale-110 ${skill.className || ''}`} 

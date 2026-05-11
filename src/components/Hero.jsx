@@ -81,7 +81,7 @@ const Hero = () => {
           </div>
 
           {/* Short one-liner */}
-          <p className="text-gray-500 dark:text-zinc-400 text-lg leading-relaxed max-w-lg">
+          <p className="text-gray-500 dark:text-zinc-400 text-lg leading-relaxed max-w-lg text-left md:text-justify hyphens-auto">
             A results-driven <span className="text-gray-900 dark:text-white font-semibold">MERN Stack Developer</span> from Rangpur, Bangladesh.
             I architect high-performance web applications with a focus on clean code and intuitive design. 🚀
           </p>

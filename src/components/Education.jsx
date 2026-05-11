@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { fadeInUp } from "./Animations";
 
 const Education = () => (
-  <section className="py-[120px] px-8 max-w-7xl mx-auto" id="education">
+  <section className="py-16 md:py-[120px] px-5 md:px-8 max-w-7xl mx-auto" id="education">
     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
@@ -41,7 +41,7 @@ const Education = () => (
               viewport={{ once: true }}
               className="absolute -left-[calc(2rem+9px)] top-1 w-4 h-4 rounded-full bg-[#2D8CFF] shadow-[0_0_10px_#2D8CFF]"
             />
-            <div className="glass-card p-card-padding rounded-xl">
+            <div className="glass-card p-6 md:p-8 rounded-xl">
               <span className="font-label-caps text-[#2D8CFF] mb-2 block tracking-widest text-xs uppercase">
                 2023 — Present
               </span>
@@ -51,7 +51,7 @@ const Education = () => (
               <p className="text-sm text-gray-500 dark:text-on-surface-variant mb-3">
                 Rangpur Polytechnic Institute · Bangladesh
               </p>
-              <p className="text-gray-600 dark:text-on-surface-variant leading-relaxed">
+              <p className="text-gray-600 dark:text-on-surface-variant leading-relaxed text-left md:text-justify hyphens-auto">
                 Building a solid foundation in core computing principles —
                 covering data structures, algorithms, operating systems,
                 database management, and modern web technologies as part of

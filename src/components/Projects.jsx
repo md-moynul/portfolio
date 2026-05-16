@@ -25,6 +25,15 @@ const Projects = () => (
       {[
         {
           id: 0,
+          title: "Qurbani Hat",
+          tags: ["REACT", "TAILWIND", "NODE.JS"],
+          desc: "QurbaniHat connects you with premium livestock for your Eid-ul-Adha. Select, book, and relax—we handle the rest.",
+          img: "/images/kurbani-hat.png",
+          link: "https://qurbani-hat-nine.vercel.app/",
+          github: "https://github.com/md-moynul/qurbani-hat"
+        },
+        {
+          id: 1,
           title: "The Dragon News",
           tags: ["NEXT.JS", "MongoDB", "TAILWIND"],
           desc: "A comprehensive news portal featuring category-based filtering, real-time news marquees, and secure social authentication.",
@@ -33,31 +42,13 @@ const Projects = () => (
           github: "https://github.com/md-moynul/dragon-news"
         },
         {
-          id: 1,
+          id: 2,
           title: "Book Vibe",
           tags: ["REACT", "TAILWIND"],
           desc: "A vibrant book collection platform to discover, review, and track your favorite reads.",
           img: bookVibeImg,
-          link: "https://books-vibe-2-j4eowzzu2-md-moynuls-projects.vercel.app/books",
+          link: "https://books-vibe-2-j4eowzzu2-md-moynuls-projects.vercel.app",
           github: "https://github.com/md-moynul/books-vibe-2"
-        },
-        {
-          id: 2,
-          title: "Flux Commerce Ecosystem",
-          tags: ["NEXT.JS", "STRIPE"],
-          desc: "A headless commerce solution featuring rapid search, multi-currency support, and optimized checkout flow.",
-          img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAAO5nvEtUS2sMkIodn0IbBSKkr4041FKYKlObjiVEuk0EabuYpCd-_KP7wuKoFFS3JfX9KGb4fdwWl2jGIZf7sdZ22WcQ6h2N3cgTl5GdmGKD6P5z3BOAkcCI8c1n-qQ6EuF-wsrm97pZ_-ZVwaFauOKACACiEVNCyvo3_EFqxG5E_Q1S8MMnYuLXGyI6coj_eYnZ1oNrpBteezY9fYre6de-PbTiYfjRJ6_Tlwju4uRXhdMmI_ygo_VEqNogqMjdkZjnt8rInZSg",
-          link: "#",
-          github: "#"
-        },
-        {
-          id: 3,
-          title: "Nexus Task Management",
-          tags: ["MONGODB", "EXPRESS"],
-          desc: "Enterprise-grade kanban system with dynamic drag-and-drop, team silos, and automated reporting hooks.",
-          img: "https://lh3.googleusercontent.com/aida-public/AB6AXuApm2LmIr7XQz7J5N3b6lMqeI0ts4hq_w4_ndYspOJf4zX20r5zQ10Rf6ZsWcO140TSQfeVEb1xQNX6QQ0IqgkuRl42WvAn5VmnnxGm9pS3JBl-9HXCFyLVb-Yh_klI7Zb6KlMQQtei5TLQa_K3njJY1yniVo4X3GmRQ0Nz2oeNmVbm5MfEcZ06UkNs1yN-5L5iYA7JS8hc6ak8pHl7XBThpMMQ9pLR9Ae_UQeqNcKyN9o5CcY2V555hSkZxoJ9TuT0VKAi_HDBFbg",
-          link: "#",
-          github: "#"
         }
       ].map((project) => (
         <motion.div

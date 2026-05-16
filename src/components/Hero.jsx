@@ -63,20 +63,21 @@ const Hero = () => {
           <div className="text-xl md:text-2xl text-gray-700 dark:text-zinc-300 font-semibold flex items-center justify-center md:justify-start gap-2 flex-wrap w-full">
             <span>I&apos;m a</span>
             <span className="text-[#2D8CFF]">
-              <Typewriter
-                options={{
-                  strings: [
-                    "MERN Stack Developer",
-                    "React Developer",
-                    "Node.js Learner",
-                    "Frontend Developer",
-                  ],
-                  autoStart: true,
-                  loop: true,
-                  deleteSpeed: 50,
-                  delay: 75,
-                }}
-              />
+                  <Typewriter
+                    options={{
+                      strings: [
+                        "MERN Stack Developer",
+                        "React.js Specialist",
+                        "Full-Stack Architect",
+                        "UI/UX Enthusiast",
+                      ],
+                      autoStart: true,
+                      loop: true,
+                      deleteSpeed: 30,
+                      delay: 50,
+                      pauseFor: 2000,
+                    }}
+                  />
             </span>
           </div>
 
@@ -200,7 +201,7 @@ const Hero = () => {
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <div>
                 <p className="font-bold text-sm text-gray-900 dark:text-white leading-none">Open to Work</p>
-                <p className="text-[10px] text-gray-400 dark:text-zinc-500 uppercase font-semibold mt-0.5">Fresher · MERN</p>
+                <p className="text-[10px] text-gray-400 dark:text-zinc-500 uppercase font-semibold mt-0.5">Entry-Level MERN Developer</p>
               </div>
             </motion.div>
 

@@ -26,7 +26,7 @@ const Projects = () => (
         {
           id: 0,
           title: "Qurbani Hat",
-          tags: ["REACT", "TAILWIND", "NODE.JS"],
+          tags: [  "NODE.JS" ,"TAILWIND","Butter Auth","MongoDB",],
           desc: "QurbaniHat connects you with premium livestock for your Eid-ul-Adha. Select, book, and relax—we handle the rest.",
           img: "/images/kurbani-hat.png",
           link: "https://qurbani-hat-nine.vercel.app/",

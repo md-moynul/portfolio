@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { fadeInUp } from "./Animations";
 
 const Education = () => (
-  <section className="py-16 md:py-[120px] px-5 md:px-8 max-w-7xl mx-auto" id="education">
+  <section className="py-16 md:py-30 px-5 md:px-8 max-w-7xl mx-auto" id="education">
     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}

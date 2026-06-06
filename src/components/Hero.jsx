@@ -13,7 +13,7 @@ const Hero = () => {
 
   const socials = [
     { icon: <FaLinkedin className="text-lg" />, href: "https://www.linkedin.com/in/md-moynul-islam47/", hov: "hover:text-[#0A66C2]" },
-    { icon: <FaEnvelope className="text-lg" />, href: "mailto:mmmdmoynulislam@gmail.com", hov: "hover:text-[#EA4335]" },
+    { icon: <FaEnvelope className="text-lg" />, href: "mailto:mdoynulislam.dev@gmail.com", hov: "hover:text-[#EA4335]" },
     { icon: <FaGithub className="text-lg" />, href: "https://github.com/md-moynul", hov: "hover:text-gray-900 dark:hover:text-white" },
     { icon: <FaFacebook className="text-lg" />, href: "https://www.facebook.com/mdmoynulislam8", hov: "hover:text-[#1877F2]" },
   ];
@@ -100,7 +100,7 @@ const Hero = () => {
             </motion.a>
 
             <motion.a
-              href="mailto:mmmdmoynulislam@gmail.com"
+              href="mailto:mdoynulislam.dev@gmail.com"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
               className="px-6 py-3 rounded-full text-gray-900 dark:text-white font-bold text-sm flex items-center gap-2 border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition-all backdrop-blur-sm"
@@ -159,7 +159,7 @@ const Hero = () => {
 
             {/* Profile blob */}
             <div className="absolute inset-0 border border-[#2D8CFF]/30 rounded-[30%_70%_70%_30%/_30%_30%_70%_70%] overflow-hidden animate-blob shadow-[0_0_60px_rgba(45,140,255,0.18)]">
-              <Image src="/moynul.png" alt="Moynul" fill className="object-cover" />
+              <Image src="/moynul.png" alt="Moynul" fill sizes="(max-width: 768px) 240px, 380px" className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-white/30 dark:from-[#08080C]/40 to-transparent" />
             </div>
 

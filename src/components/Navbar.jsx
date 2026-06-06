@@ -65,15 +65,18 @@ const Navbar = () => {
           <div className="flex items-center gap-2 md:gap-4">
             <ThemeToggle />
 
-            <motion.button
+            <motion.a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="hidden sm:block bg-[#2D8CFF] text-white px-6 py-2.5 rounded-full font-bold text-xs tracking-widest transition-all shadow-[0_10px_20px_rgba(45,140,255,0.2)]"
+              className="hidden sm:flex items-center justify-center bg-[#2D8CFF] text-white px-6 py-2.5 rounded-full font-bold text-xs tracking-widest transition-all shadow-[0_10px_20px_rgba(45,140,255,0.25)]"
             >
-              RESUME
-            </motion.button>
+              DOWNLOAD RESUME
+            </motion.a>
 
             {/* Mobile Menu Toggle (3 Dots) */}
             <button
@@ -141,14 +144,18 @@ const Navbar = () => {
               </div>
 
               <div className="mt-auto pt-8">
-                <motion.button
+                <motion.a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full bg-[#2D8CFF] text-white py-5 rounded-2xl font-bold tracking-widest text-sm shadow-[0_15px_30px_rgba(45,140,255,0.25)] flex items-center justify-center gap-2"
                 >
-                  RESUME
+                  DOWNLOAD RESUME
                   <span className="material-symbols-outlined text-sm">download</span>
-                </motion.button>
+                </motion.a>
               </div>
             </motion.div>
           </>

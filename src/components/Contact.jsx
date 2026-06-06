@@ -71,7 +71,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <span className="block font-label-caps text-gray-500 dark:text-on-surface-variant text-[10px]">Email Me</span>
-                  <a href="mailto:mmmdmoynulislam@gmail.com" className="text-gray-900 dark:text-white font-bold hover:text-[#2D8CFF] transition-colors">mmmdmoynulislam@gmail.com</a>
+                  <a href="mailto:mdoynulislam.dev@gmail.com" className="text-gray-900 dark:text-white font-bold hover:text-[#2D8CFF] transition-colors">mdoynulislam.dev@gmail.com</a>
                 </div>
               </div>
               <div className="flex items-center gap-4">

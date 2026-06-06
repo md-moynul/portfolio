@@ -24,7 +24,7 @@ const Footer = () => (
               { icon: <FaGithub />, href: "https://github.com/md-moynul" },
               { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/md-moynul-islam47/" },
               { icon: <FaFacebook />, href: "https://www.facebook.com/mdmoynulislam8" },
-              { icon: <FaEnvelope />, href: "mailto:mmmdmoynulislam@gmail.com" },
+              { icon: <FaEnvelope />, href: "mailto:mdoynulislam.dev@gmail.com" },
             ].map((social, i) => (
               <a
                 key={i}

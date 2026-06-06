@@ -25,6 +25,16 @@ const Projects = () => (
       {[
         {
           id: 0,
+          title: "SportNest",
+          tags: ["NEXT.JS", "TAILWIND", "MongoDB", "Better Auth"],
+          desc: "A modern sports equipment and gear e-commerce platform featuring product browsing, secure user authentication, cart management, and order systems.",
+          img: "/images/sportnest.png",
+          link: "https://sportnest-gamma.vercel.app/",
+          githubFrontend: "https://github.com/md-moynul/sportnest",
+          githubBackend: "https://github.com/md-moynul/sportnest-server",
+        },
+        {
+          id: 1,
           title: "Qurbani Hat",
           tags: [  "NODE.JS" ,"TAILWIND","Butter Auth","MongoDB",],
           desc: "QurbaniHat connects you with premium livestock for your Eid-ul-Adha. Select, book, and relax—we handle the rest.",
@@ -33,7 +43,7 @@ const Projects = () => (
           github: "https://github.com/md-moynul/qurbani-hat"
         },
         {
-          id: 1,
+          id: 2,
           title: "The Dragon News",
           tags: ["NEXT.JS", "MongoDB", "TAILWIND"],
           desc: "A comprehensive news portal featuring category-based filtering, real-time news marquees, and secure social authentication.",
@@ -42,7 +52,16 @@ const Projects = () => (
           github: "https://github.com/md-moynul/dragon-news"
         },
         {
-          id: 2,
+          id: 3,
+          title: "Keen Keeper",
+          tags: ["REACT", "TAILWIND", "RECHARTS", "VITE"],
+          desc: "A friendship management web app that helps you track and maintain meaningful relationships by logging interactions, monitoring contact frequency, and visualizing your social habits.",
+          img: "/images/keenkeper.png",
+          link: "https://keen-keeper-iota.vercel.app/",
+          github: "https://github.com/md-moynul/keen-keeper"
+        },
+        {
+          id: 4,
           title: "Book Vibe",
           tags: ["REACT", "TAILWIND"],
           desc: "A vibrant book collection platform to discover, review, and track your favorite reads.",
@@ -84,7 +103,26 @@ const Projects = () => (
               >
                 Live Demo <span className="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_outward</span>
               </a>
-              {project.github && (
+              {project.githubFrontend && project.githubBackend ? (
+                <>
+                  <a
+                    className="px-3 py-2 border border-gray-300 dark:border-white/10 rounded-full text-gray-600 dark:text-zinc-300 font-bold text-xs flex items-center gap-1.5 group/link hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all"
+                    href={project.githubFrontend}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaGithub className="text-sm group-hover/link:rotate-12 transition-transform" /> Frontend
+                  </a>
+                  <a
+                    className="px-3 py-2 border border-gray-300 dark:border-white/10 rounded-full text-gray-600 dark:text-zinc-300 font-bold text-xs flex items-center gap-1.5 group/link hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all"
+                    href={project.githubBackend}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaGithub className="text-sm group-hover/link:rotate-12 transition-transform" /> Backend
+                  </a>
+                </>
+              ) : project.github ? (
                 <a
                   className="px-5 py-2.5 border border-gray-300 dark:border-white/10 rounded-full text-gray-600 dark:text-zinc-300 font-bold text-xs flex items-center gap-2 group/link hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all"
                   href={project.github}
@@ -93,7 +131,7 @@ const Projects = () => (
                 >
                   GitHub <FaGithub className="text-sm group-hover/link:rotate-12 transition-transform" />
                 </a>
-              )}
+              ) : null}
             </div>
           </div>
         </motion.div>

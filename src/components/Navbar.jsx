@@ -75,7 +75,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
               className="hidden sm:flex items-center justify-center bg-[#2D8CFF] text-white px-6 py-2.5 rounded-full font-bold text-xs tracking-widest transition-all shadow-[0_10px_20px_rgba(45,140,255,0.25)]"
             >
-              DOWNLOAD RESUME
+              VIEW RESUME
             </motion.a>
 
             {/* Mobile Menu Toggle (3 Dots) */}

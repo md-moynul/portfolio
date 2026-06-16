@@ -89,7 +89,7 @@ const Projects = () => (
           <div className="p-6 md:p-8 flex flex-col flex-grow">
             <div className="flex gap-3 mb-5">
               {project.tags.map(tag => (
-                <span key={tag} className="text-[10px] font-bold tracking-[0.2em] text-[#2D8CFF] uppercase">{tag}</span>
+                <span key={tag} className="text-[10px] font-bold tracking-[0.2em] text-[#2D8CFF] ">{tag}</span>
               ))}
             </div>
             <h3 className="font-h2 text-xl text-gray-900 dark:text-white mb-3">{project.title}</h3>

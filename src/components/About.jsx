@@ -62,7 +62,7 @@ const About = () => {
             {/* Inline Stats */}
             <div className="flex flex-wrap gap-4 pt-2 border-t border-gray-100 dark:border-zinc-800">
               {[
-                { value: "2nd", label: "Year", icon: "school", tooltip: "Diploma in Computer Science & Technology" },
+                { value: "3rd", label: "Year", icon: "school", tooltip: "Diploma in Computer Science & Technology" },
                 { value: "Open", label: "Work", icon: "verified_user", tooltip: "Available for internships and junior roles" },
                 { value: "MERN", label: "Stack", icon: "code", tooltip: "MongoDB, Express.js, React, Node.js" },
                 { value: "World", label: "Based", icon: "public", tooltip: "Remote ready and available for global opportunities" },

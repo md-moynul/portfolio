@@ -23,7 +23,7 @@ const Hero = () => {
     // ✅ pb-0 — no bottom padding pushing next section down
     <section
       className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center px-5 md:px-6 overflow-hidden bg-transparent pt-28 md:pt-24 pb-16"
-      id="home"
+      id="hero"
     >
 
       <div className="max-w-7xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-12 relative z-20">

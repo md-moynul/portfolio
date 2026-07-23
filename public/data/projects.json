@@ -1,0 +1,63 @@
+[
+  {
+    "id": 0,
+    "title": "SportNest",
+    "tags": ["Next.js", "Tailwind CSS", "MongoDB", "Better Auth"],
+    "desc": "A modern sports equipment and gear e-commerce platform featuring product browsing, secure user authentication, cart management, and order systems.",
+    "longDesc": "SportNest is a full-stack e-commerce platform built for sports enthusiasts. It features a fully functional product catalog with filtering and search, a secure shopping cart, order management, and Better Auth-powered authentication. The backend is powered by Node.js and MongoDB, while the frontend leverages Next.js App Router for server-side rendering and fast page loads.",
+    "img": "/images/sportnest.png",
+    "link": "https://sportnest-gamma.vercel.app/",
+    "githubFrontend": "https://github.com/md-moynul/sportnest",
+    "githubBackend": "https://github.com/md-moynul/sportnest-server",
+    "features": ["Product catalog with filters", "Secure authentication (Better Auth)", "Shopping cart & checkout", "Order management system", "Responsive design"],
+    "year": "2025"
+  },
+  {
+    "id": 1,
+    "title": "Qurbani Hat",
+    "tags": ["Node.js", "Tailwind CSS", "Better Auth", "MongoDB"],
+    "desc": "QurbaniHat connects you with premium livestock for your Eid-ul-Adha. Select, book, and relax—we handle the rest.",
+    "longDesc": "Qurbani Hat is a full-stack livestock booking platform designed for Eid-ul-Adha. Users can browse available livestock, view detailed listings, and make secure bookings. The platform features Better Auth for authentication, real-time availability updates, and a clean admin dashboard for managing listings and orders.",
+    "img": "/images/kurbani-hat.png",
+    "link": "https://qurbani-hat-nine.vercel.app/",
+    "github": "https://github.com/md-moynul/qurbani-hat",
+    "features": ["Livestock browsing & filtering", "Secure booking system", "Better Auth authentication", "Admin dashboard", "Real-time availability"],
+    "year": "2025"
+  },
+  {
+    "id": 2,
+    "title": "The Dragon News",
+    "tags": ["Next.js", "MongoDB", "Tailwind CSS"],
+    "desc": "A comprehensive news portal featuring category-based filtering, real-time news marquees, and secure social authentication.",
+    "longDesc": "The Dragon News is a modern news portal built with Next.js. It delivers real-time news content organized by categories, with a marquee ticker for breaking news. Users can authenticate via social providers, bookmark articles, and enjoy a clean reading experience optimized for both desktop and mobile.",
+    "img": "/dragon-news.png",
+    "link": "https://dragon-news-kohl-tau.vercel.app",
+    "github": "https://github.com/md-moynul/dragon-news",
+    "features": ["Category-based news filtering", "Real-time news marquee", "Social authentication", "Article bookmarking", "Mobile-optimized layout"],
+    "year": "2024"
+  },
+  {
+    "id": 3,
+    "title": "Keen Keeper",
+    "tags": ["React", "Tailwind CSS", "Recharts", "Vite"],
+    "desc": "A friendship management web app that helps you track and maintain meaningful relationships by logging interactions and visualizing social habits.",
+    "longDesc": "Keen Keeper is a relationship management tool that helps users maintain meaningful connections. Log interactions with friends, set contact reminders, and visualize your social habits through beautiful Recharts data visualizations. Built with React and Vite for a lightning-fast experience.",
+    "img": "/images/keenkeper.png",
+    "link": "https://keen-keeper-iota.vercel.app/",
+    "github": "https://github.com/md-moynul/keen-keeper",
+    "features": ["Interaction logging", "Contact frequency tracking", "Recharts data visualizations", "Reminder system", "Responsive SPA"],
+    "year": "2024"
+  },
+  {
+    "id": 4,
+    "title": "Book Vibe",
+    "tags": ["React", "Tailwind CSS"],
+    "desc": "A vibrant book collection platform to discover, review, and track your favorite reads.",
+    "longDesc": "Book Vibe is a clean and vibrant book discovery platform. Users can browse a curated collection of books, read and write reviews, track their reading progress, and maintain a personal reading list. Built entirely with React and Tailwind CSS for a smooth single-page experience.",
+    "img": "/images/book-vibe.png",
+    "link": "https://books-vibe-2-j4eowzzu2-md-moynuls-projects.vercel.app",
+    "github": "https://github.com/md-moynul/books-vibe-2",
+    "features": ["Book discovery & browsing", "Read & write reviews", "Personal reading list", "Reading progress tracking", "Responsive SPA"],
+    "year": "2024"
+  }
+]

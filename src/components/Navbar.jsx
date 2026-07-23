@@ -2,21 +2,44 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("Home");
 
-  // Track scroll for background opacity
+  // Track scroll position & active section
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+
+      const sections = [
+        { name: "Home", id: "hero" },
+        { name: "About", id: "about" },
+        { name: "Skills", id: "skills" },
+        { name: "Projects", id: "projects" },
+        { name: "Education", id: "education" },
+        { name: "Contact", id: "contact" },
+      ];
+
+      const scrollPosition = window.scrollY + 200;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i].id);
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i].name);
+          break;
+        }
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
+    { name: "Home", href: "#hero" },
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
@@ -26,136 +49,113 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 w-full z-[100] transition-all duration-300 ${scrolled
-        ? "bg-white/90 dark:bg-[#0A0A0B]/90 backdrop-blur-xl border-b border-gray-200 dark:border-white/5 py-3"
-        : "bg-transparent py-5"
-        }`}>
-        <div className="flex justify-between items-center px-6 max-w-7xl mx-auto w-full">
+      <div className="fixed top-4 left-0 right-0 z-[100] flex justify-center px-4 pointer-events-none">
+        <motion.nav
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className={`pointer-events-auto flex items-center justify-between gap-4 md:gap-8 px-5 md:px-7 py-2.5 md:py-3 rounded-full transition-all duration-300 w-full max-w-4xl border ${
+            scrolled
+              ? "bg-transparent backdrop-blur-md border-gray-200/40 dark:border-white/10 shadow-sm"
+              : "bg-transparent backdrop-blur-sm border-gray-200/20 dark:border-white/5"
+          }`}
+        >
           {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center"
-          >
+          <a href="#hero" className="flex items-center gap-2 group flex-shrink-0">
             <img
               src="/images/logo.png"
               alt="Logo"
-              className="h-10 md:h-13 w-auto object-contain dark:brightness-110 transition-all"
+              className="h-7 md:h-8 w-auto object-contain transition-transform group-hover:scale-105"
             />
-          </motion.div>
+          </a>
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex gap-8 items-center">
-            {navLinks.map((link, i) => (
-              <motion.a
-                key={link.name}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="font-manrope text-sm font-semibold tracking-wide text-gray-600 dark:text-zinc-400 hover:text-[#2D8CFF] dark:hover:text-[#2D8CFF] transition-all duration-300 relative group"
-                href={link.href}
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#2D8CFF] transition-all duration-300 group-hover:w-full"></span>
-              </motion.a>
-            ))}
+          {/* Desktop Nav Links */}
+          <div className="hidden md:flex items-center gap-1 bg-transparent p-1 rounded-full border border-gray-200/30 dark:border-white/5">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.name;
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`relative px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 ${
+                    isActive
+                      ? "text-[#2D8CFF] dark:text-white"
+                      : "text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activePill"
+                      className="absolute inset-0 bg-white dark:bg-white/10 rounded-full shadow-sm"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{link.name}</span>
+                </a>
+              );
+            })}
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-2 md:gap-4">
-            <ThemeToggle />
+          {/* Actions (Theme Toggle & Mobile Menu) */}
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="p-0.5 rounded-full bg-gray-100/80 dark:bg-white/10 border border-gray-200/60 dark:border-white/10">
+              <ThemeToggle />
+            </div>
 
-            <motion.a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="hidden sm:flex items-center justify-center bg-[#2D8CFF] text-white px-6 py-2.5 rounded-full font-bold text-xs tracking-widest transition-all shadow-[0_10px_20px_rgba(45,140,255,0.25)]"
-            >
-              VIEW RESUME
-            </motion.a>
-
-            {/* Mobile Menu Toggle (3 Dots) */}
+            {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white"
+              className="md:hidden flex items-center justify-center w-9 h-9 rounded-full bg-gray-100 dark:bg-white/10 text-gray-800 dark:text-white border border-gray-200/60 dark:border-white/10"
+              aria-label="Toggle Menu"
             >
-              <span className="material-symbols-outlined text-2xl">
-                {isOpen ? "close" : "more_vert"}
+              <span className="material-symbols-outlined text-xl">
+                {isOpen ? "close" : "menu"}
               </span>
             </button>
           </div>
-        </div>
-      </nav>
+        </motion.nav>
+      </div>
 
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence mode="wait">
+      {/* Mobile Drawer Overlay */}
+      <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-md z-[105] md:hidden"
+              className="fixed inset-0 bg-black/40 dark:bg-black/70 backdrop-blur-md z-[105] md:hidden"
             />
 
-            {/* Drawer */}
             <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed inset-y-0 right-0 w-[300px] bg-white dark:bg-[#0A0A0B] shadow-2xl z-[110] p-8 flex flex-col gap-8 md:hidden border-l border-gray-200 dark:border-white/5"
+              initial={{ opacity: 0, scale: 0.95, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -20 }}
+              transition={{ duration: 0.2 }}
+              className="fixed top-20 left-4 right-4 z-[110] bg-white/95 dark:bg-zinc-900/95 backdrop-blur-2xl rounded-3xl p-6 border border-gray-200 dark:border-white/10 shadow-2xl md:hidden max-w-md mx-auto"
             >
-              <div className="flex justify-between items-center mb-4">
-                <span className="font-black text-xl tracking-tighter text-gray-900 dark:text-white">NAVIGATE</span>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-white/5 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-all hover:scale-110"
-                >
-                  <span className="material-symbols-outlined">close</span>
-                </button>
-              </div>
-
-              <div className="flex flex-col gap-1">
-                {navLinks.map((link, i) => (
-                  <motion.a
-                    key={link.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="group py-4 border-b border-gray-100 dark:border-white/5 last:border-0 flex items-center justify-between"
-                  >
-                    <span className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-[#2D8CFF] transition-colors uppercase tracking-tight">
-                      {link.name}
-                    </span>
-                    <span className="material-symbols-outlined text-gray-300 dark:text-zinc-700 group-hover:text-[#2D8CFF] transition-all transform group-hover:translate-x-1">
-                      arrow_forward_ios
-                    </span>
-                  </motion.a>
-                ))}
-              </div>
-
-              <div className="mt-auto pt-8">
-                <motion.a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsOpen(false)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full bg-[#2D8CFF] text-white py-5 rounded-2xl font-bold tracking-widest text-sm shadow-[0_15px_30px_rgba(45,140,255,0.25)] flex items-center justify-center gap-2"
-                >
-                  DOWNLOAD RESUME
-                  <span className="material-symbols-outlined text-sm">download</span>
-                </motion.a>
+              <div className="flex flex-col gap-2">
+                {navLinks.map((link) => {
+                  const isActive = activeSection === link.name;
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`flex items-center justify-between px-5 py-3.5 rounded-2xl text-sm font-semibold transition-all ${
+                        isActive
+                          ? "bg-[#2D8CFF]/10 text-[#2D8CFF] dark:bg-[#2D8CFF]/20"
+                          : "text-gray-700 dark:text-zinc-300 hover:bg-gray-100 dark:hover:bg-white/5"
+                      }`}
+                    >
+                      <span>{link.name}</span>
+                      {isActive && (
+                        <span className="w-2 h-2 rounded-full bg-[#2D8CFF]" />
+                      )}
+                    </a>
+                  );
+                })}
               </div>
             </motion.div>
           </>

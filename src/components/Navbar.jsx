@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,21 +57,22 @@ const Navbar = () => {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className={`pointer-events-auto flex items-center justify-between gap-4 md:gap-8 px-5 md:px-7 py-2.5 md:py-3 rounded-full transition-all duration-300 w-full max-w-4xl border ${
             scrolled
-              ? "bg-transparent backdrop-blur-md border-gray-200/40 dark:border-white/10 shadow-sm"
-              : "bg-transparent backdrop-blur-sm border-gray-200/20 dark:border-white/5"
+              ? "bg-white/70 dark:bg-zinc-950/70 backdrop-blur-xl border-gray-300 dark:border-white/20 shadow-xl shadow-black/5 dark:shadow-black/40"
+              : "bg-white/40 dark:bg-zinc-950/40 backdrop-blur-lg border-gray-300/80 dark:border-white/15 shadow-md"
           }`}
         >
-          {/* Logo */}
           <a href="#hero" className="flex items-center gap-2 group flex-shrink-0">
-            <img
+            <Image
               src="/images/logo.png"
               alt="Logo"
+              width={140}
+              height={32}
               className="h-7 md:h-8 w-auto object-contain transition-transform group-hover:scale-105"
             />
           </a>
 
           {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-1 bg-transparent p-1 rounded-full border border-gray-200/30 dark:border-white/5">
+          <div className="hidden md:flex items-center gap-1 bg-gray-100/50 dark:bg-white/5 p-1 rounded-full border border-gray-200 dark:border-white/10">
             {navLinks.map((link) => {
               const isActive = activeSection === link.name;
               return (

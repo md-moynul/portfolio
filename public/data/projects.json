@@ -1,63 +1,591 @@
 [
   {
     "id": 0,
-    "title": "SportNest",
-    "tags": ["Next.js", "Tailwind CSS", "MongoDB", "Better Auth"],
-    "desc": "A modern sports equipment and gear e-commerce platform featuring product browsing, secure user authentication, cart management, and order systems.",
-    "longDesc": "SportNest is a full-stack e-commerce platform built for sports enthusiasts. It features a fully functional product catalog with filtering and search, a secure shopping cart, order management, and Better Auth-powered authentication. The backend is powered by Node.js and MongoDB, while the frontend leverages Next.js App Router for server-side rendering and fast page loads.",
-    "img": "/images/sportnest.png",
-    "link": "https://sportnest-gamma.vercel.app/",
-    "githubFrontend": "https://github.com/md-moynul/sportnest",
-    "githubBackend": "https://github.com/md-moynul/sportnest-server",
-    "features": ["Product catalog with filters", "Secure authentication (Better Auth)", "Shopping cart & checkout", "Order management system", "Responsive design"],
-    "year": "2025"
+    "title": "Smart health",
+    "tags": [
+      "Full-Stack",
+      "Healthcare",
+      "AI",
+      "Next.js"
+    ],
+    "teacstack": [
+      "Next.js",
+      "TypeScript",
+      "AI Prescription Analyzer",
+      "AI Chat Widget",
+      "Tailwind CSS"
+    ],
+    "desc": "A comprehensive healthcare management and online pharmacy solution.",
+    "longDesc": "SmartHealth is a cutting-edge vibe coding application designed as a comprehensive online pharmacy and healthcare management solution. It allows users to manage their prescriptions entirely online and consult with licensed pharmacists 24/7 via secure chat. The application features an advanced AI prescription analyzer and an intelligent chat widget to streamline patient care. Built for affordability, the platform accepts major insurance plans and offers same-day local delivery for critical medications. By merging cutting-edge biological science with premium product design, it provides an intuitive environment for optimizing daily vitality and well-being.",
+    "starting_date": "Jul 20, 2026",
+    "finished_date": "Jul 22, 2026",
+    "link": "https://smart-health-cyan.vercel.app/",
+    "githubFrontend": "https://github.com/md-moynul/smart-health",
+    "githubBackend": "https://github.com/md-moynul/smart-health-backend",
+    "features": [
+      "Online Prescription Management",
+      "24/7 Pharmacist Chat",
+      "AI Prescription Analyzer",
+      "Same-day Local Delivery",
+      "Insurance Integration"
+    ],
+    "img": "/images/smart-health.png"
   },
   {
     "id": 1,
-    "title": "Qurbani Hat",
-    "tags": ["Node.js", "Tailwind CSS", "Better Auth", "MongoDB"],
-    "desc": "QurbaniHat connects you with premium livestock for your Eid-ul-Adha. Select, book, and relax—we handle the rest.",
-    "longDesc": "Qurbani Hat is a full-stack livestock booking platform designed for Eid-ul-Adha. Users can browse available livestock, view detailed listings, and make secure bookings. The platform features Better Auth for authentication, real-time availability updates, and a clean admin dashboard for managing listings and orders.",
-    "img": "/images/kurbani-hat.png",
-    "link": "https://qurbani-hat-nine.vercel.app/",
-    "github": "https://github.com/md-moynul/qurbani-hat",
-    "features": ["Livestock browsing & filtering", "Secure booking system", "Better Auth authentication", "Admin dashboard", "Real-time availability"],
-    "year": "2025"
+    "title": "Pizzapoint",
+    "tags": [
+      "Full-Stack",
+      "E-commerce",
+      "Next.js",
+      "TypeScript"
+    ],
+    "teacstack": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Geolocation API",
+      "Inventory Management"
+    ],
+    "desc": "A dedicated platform for pizza ordering with real-time tracking.",
+    "longDesc": "PizzaPoint is a dedicated e-commerce platform specifically built for seamless pizza ordering and delivery in Rangpur. The application features a 'build your own' tool that lets customers pick their preferred base, sauce, cheese, and vegetables. It includes a live order tracking system that monitors the pizza's progress from the kitchen directly to the user's door. The platform maintains a close track of ingredient inventory to ensure that all customizable options are always available for fulfillment. With its responsive design and localized focus, PizzaPoint provides a modern solution for fast-food delivery services.",
+    "starting_date": "Jul 12, 2026",
+    "finished_date": "Jul 16, 2026",
+    "link": "https://pizzapoint-wheat.vercel.app/",
+    "githubFrontend": "https://github.com/md-moynul/pizzapoint",
+    "githubBackend": "https://github.com/md-moynul/pizzapoint-server",
+    "features": [
+      "Custom Pizza Builder",
+      "Live Order Tracking",
+      "Geolocation Pin Drop",
+      "Inventory Management",
+      "Admin Dashboard"
+    ],
+    "img": "/images/pizzapoint.png"
   },
   {
     "id": 2,
-    "title": "The Dragon News",
-    "tags": ["Next.js", "MongoDB", "Tailwind CSS"],
-    "desc": "A comprehensive news portal featuring category-based filtering, real-time news marquees, and secure social authentication.",
-    "longDesc": "The Dragon News is a modern news portal built with Next.js. It delivers real-time news content organized by categories, with a marquee ticker for breaking news. Users can authenticate via social providers, bookmark articles, and enjoy a clean reading experience optimized for both desktop and mobile.",
-    "img": "/dragon-news.png",
-    "link": "https://dragon-news-kohl-tau.vercel.app",
-    "github": "https://github.com/md-moynul/dragon-news",
-    "features": ["Category-based news filtering", "Real-time news marquee", "Social authentication", "Article bookmarking", "Mobile-optimized layout"],
-    "year": "2024"
+    "title": "Reciply",
+    "tags": [
+      "Full-Stack",
+      "Recipe Sharing",
+      "Next.js",
+      "Node.js"
+    ],
+    "teacstack": [
+      "Next.js 14",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JWT",
+      "Stripe Checkout",
+      "Framer Motion",
+      "imgBB"
+    ],
+    "desc": "A modern recipe discovery and sharing community for food lovers.",
+    "longDesc": "Recipely is a modern full-stack recipe discovery community developed to connect food lovers and home cooks worldwide. It provides a clean minimalist interface where users can search, explore, and save their favorite culinary creations. The platform features advanced filtering by category, cuisine, and difficulty to help users find exactly what they want to cook. Premium membership options are available, allowing users to upload unlimited recipes and access exclusive content via Stripe integration. By implementing secure JWT authentication and real-time social features, Recipely offers a trustworthy environment for building a digital kitchen notebook.",
+    "starting_date": "Jun 20, 2026",
+    "finished_date": "Jun 29, 2026",
+    "link": "https://recipely-beta.vercel.app/",
+    "githubFrontend": "https://github.com/md-moynul/recipely",
+    "githubBackend": "https://github.com/md-moynul/recipely-server",
+    "features": [
+      "Advanced Recipe Filtering",
+      "Premium Membership (Stripe)",
+      "User Recipe Uploads",
+      "Personal Dashboard",
+      "Like & Favorite System"
+    ],
+    "img": "/images/recipely.png"
   },
   {
     "id": 3,
-    "title": "Keen Keeper",
-    "tags": ["React", "Tailwind CSS", "Recharts", "Vite"],
-    "desc": "A friendship management web app that helps you track and maintain meaningful relationships by logging interactions and visualizing social habits.",
-    "longDesc": "Keen Keeper is a relationship management tool that helps users maintain meaningful connections. Log interactions with friends, set contact reminders, and visualize your social habits through beautiful Recharts data visualizations. Built with React and Vite for a lightning-fast experience.",
-    "img": "/images/keenkeper.png",
-    "link": "https://keen-keeper-iota.vercel.app/",
-    "github": "https://github.com/md-moynul/keen-keeper",
-    "features": ["Interaction logging", "Contact frequency tracking", "Recharts data visualizations", "Reminder system", "Responsive SPA"],
-    "year": "2024"
+    "title": "SportNest",
+    "tags": [
+      "Next.js",
+      "Tailwind CSS",
+      "MongoDB",
+      "Better Auth"
+    ],
+    "teacstack": [
+      "Next.js 16",
+      "React 19",
+      "Tailwind CSS v4",
+      "HeroUI",
+      "Node.js",
+      "MongoDB",
+      "Better Auth",
+      "React Toastify"
+    ],
+    "desc": "A modern sports facility management and equipment platform.",
+    "longDesc": "SportNest is a modern standard platform for sports facility management and gear e-commerce designed for athletes. It streamlines booking operations for turfs and courts, allowing players to secure slots instantly without needing phone calls. The system features an automated schedule tracker that guarantees zero overlapping or double-bookings by showing real-time availability. Users can manage their active game schedules and view digital booking receipts through an all-in-one personal dashboard. Built with Next.js and MongoDB, it leverages server-side rendering to provide a fast and SEO-friendly user experience.",
+    "starting_date": "May 18, 2026",
+    "finished_date": "May 22, 2026",
+    "link": "https://sportnest-gamma.vercel.app/",
+    "githubFrontend": "https://github.com/md-moynul/sportnest",
+    "githubBackend": "https://github.com/md-moynul/sportnest-server",
+    "features": [
+      "Real-time Slot Booking",
+      "Verified Premium Venues",
+      "Equipment E-commerce",
+      "Secure Auth (Better Auth)",
+      "Digital Receipts"
+    ],
+    "img": "/images/sportnest.png"
   },
   {
     "id": 4,
+    "title": "Qurbani Hat",
+    "tags": [
+      "Node.js",
+      "Tailwind CSS",
+      "Better Auth",
+      "MongoDB"
+    ],
+    "teacstack": [
+      "Next.js 16",
+      "Tailwind CSS",
+      "HeroUI",
+      "MongoDB",
+      "Better Auth",
+      "React Spring",
+      "React Toastify"
+    ],
+    "desc": "A premium livestock booking platform for Eid-ul-Adha.",
+    "longDesc": "Qurbani Hat is a full-featured web application designed to connect users with premium livestock for the Eid-ul-Adha festival. The platform allows users to browse various animals with detailed specifications such as price, weight, and breed category. It features a secure booking system powered by Better Auth, ensuring that all transactions and user data remain protected. The application provides real-time availability updates for every listing to prevent booking conflicts during the busy festival season. With its mobile-first design and intuitive user dashboard, it offers the smartest way to manage religious sacrifice arrangements.",
+    "starting_date": "Apr 30, 2026",
+    "finished_date": "May 3, 2026",
+    "link": "https://qurbani-hat-nine.vercel.app/",
+    "githubFrontend": "https://github.com/md-moynul/qurbani-hat",
+    "githubBackend": null,
+    "features": [
+      "Animal Browsing & Details",
+      "Price/Weight Filtering",
+      "User Dashboard",
+      "Real-time Availability",
+      "Better Auth Security"
+    ],
+    "img": "/images/kurbani-hat.png"
+  },
+  {
+    "id": 5,
+    "title": "The Dragon News",
+    "tags": [
+      "Next.js",
+      "MongoDB",
+      "Tailwind CSS"
+    ],
+    "teacstack": [
+      "Next.js",
+      "MongoDB",
+      "Tailwind CSS",
+      "Social Authentication"
+    ],
+    "desc": "A real-time news portal with category filtering and bookmarks.",
+    "longDesc": "The Dragon News is a comprehensive news portal built to provide journalism without fear or favor. It features category-based news filtering across international, sports, and entertainment sections to keep readers informed. The application includes a real-time news marquee ticker for breaking headlines and supports secure social authentication for personalized access. Users can sign in via Google or GitHub to bookmark important articles and enjoy a clean, ad-free reading experience. Utilizing Next.js and MongoDB, the portal handles large volumes of content while maintaining high performance on all devices.",
+    "starting_date": "Apr 24, 2026",
+    "finished_date": "Apr 28, 2026",
+    "link": "https://dragon-news-kohl-tau.vercel.app/",
+    "githubFrontend": "https://github.com/md-moynul/dragon-news",
+    "githubBackend": null,
+    "features": [
+      "Breaking News Ticker",
+      "Social Authentication",
+      "Article Bookmarking",
+      "Category Filters",
+      "Responsive UI"
+    ],
+    "img": "/dragon-news.png"
+  },
+  {
+    "id": 6,
+    "title": "Keen Keeper",
+    "tags": [
+      "React",
+      "Tailwind CSS",
+      "Recharts",
+      "Vite"
+    ],
+    "teacstack": [
+      "React 19",
+      "Vite",
+      "Tailwind CSS",
+      "DaisyUI",
+      "Recharts",
+      "React Router v7",
+      "React Toastify"
+    ],
+    "desc": "A friendship management app to track and maintain relationships.",
+    "longDesc": "Keen Keeper is a beautiful friendship management web application created to help users maintain meaningful social relationships. It allows users to track their interaction status with friends through real-time indicators like 'On Track' or 'Overdue'. The application features a chronological interaction timeline that logs every call, text, or meetup with timestamped history. An integrated analytics dashboard powered by Recharts provides visual insights into social habits and communication patterns. Built with React 19 and Vite, it offers a fast and responsive interface with support for both dark and light modes.",
+    "starting_date": "Apr 13, 2026",
+    "finished_date": "Apr 16, 2026",
+    "link": "https://keen-keeper-iota.vercel.app/",
+    "githubFrontend": "https://github.com/md-moynul/keen-keeper",
+    "githubBackend": null,
+    "features": [
+      "Friend Status Indicators",
+      "Interaction Timeline",
+      "Analytics with Recharts",
+      "Theme Switching",
+      "Contact Detail Management"
+    ],
+    "img": "/images/keenkeper.png"
+  },
+  {
+    "id": 7,
+    "title": "Hero Io",
+    "tags": [
+      "React",
+      "Vite",
+      "Frontend",
+      "Development"
+    ],
+    "teacstack": [
+      "React",
+      "Vite",
+      "Context API",
+      "Responsive CSS"
+    ],
+    "desc": "An application discovery platform for exploring web solutions.",
+    "longDesc": "Hero IO is an interactive web solution developed to serve as a discovery platform for exploring various applications. The project utilizes modern React features such as context state management to provide a seamless navigation experience. Users can browse a grid of applications and view detailed pages for each tool to understand its functionality. The layout is designed to be fully responsive, ensuring accessibility across mobile, tablet, and desktop devices. With its clean UI and lightweight structure, Hero IO demonstrates efficient frontend development practices using Vite and React.",
+    "starting_date": "Apr 13, 2026",
+    "finished_date": "Apr 18, 2026",
+    "link": "https://hero-io-mu-eight.vercel.app/",
+    "githubFrontend": "https://github.com/md-moynul/Hero-IO",
+    "githubBackend": null,
+    "features": [
+      "App Exploration",
+      "Detail View Pages",
+      "Context State Management",
+      "Vite Performance",
+      "Responsive Grid"
+    ],
+    "img": "/images/hero-io.png"
+  },
+  {
+    "id": 8,
     "title": "Book Vibe",
-    "tags": ["React", "Tailwind CSS"],
-    "desc": "A vibrant book collection platform to discover, review, and track your favorite reads.",
-    "longDesc": "Book Vibe is a clean and vibrant book discovery platform. Users can browse a curated collection of books, read and write reviews, track their reading progress, and maintain a personal reading list. Built entirely with React and Tailwind CSS for a smooth single-page experience.",
-    "img": "/images/book-vibe.png",
-    "link": "https://books-vibe-2-j4eowzzu2-md-moynuls-projects.vercel.app",
-    "github": "https://github.com/md-moynul/books-vibe-2",
-    "features": ["Book discovery & browsing", "Read & write reviews", "Personal reading list", "Reading progress tracking", "Responsive SPA"],
-    "year": "2024"
+    "tags": [
+      "React",
+      "Tailwind CSS"
+    ],
+    "teacstack": [
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "JavaScript"
+    ],
+    "desc": "A vibrant book collection platform to track your reading progress.",
+    "longDesc": "Book Vibe is a vibrant book collection platform designed to help readers discover and track their favorite literary works. Users can browse a curated selection of books, read detailed reviews, and maintain a personal reading list. The application includes a reading progress tracker that allows users to save titles for later and manage their wishlist effectively. Built entirely with React and Tailwind CSS, it offers a smooth single-page application experience with fast transitions. The responsive layout ensures that the entire book catalog is easily accessible for book lovers on any device.",
+    "starting_date": "Apr 8, 2026",
+    "finished_date": "Apr 17, 2026",
+    "link": "https://books-vibe-2.vercel.app/",
+    "githubFrontend": "https://github.com/md-moynul/books-vibe",
+    "githubBackend": null,
+    "features": [
+      "Curated Book Collection",
+      "Reading Progress Tracker",
+      "User Reviews",
+      "Personal Wishlist",
+      "Responsive Layout"
+    ],
+    "img": "/images/book-vibe.png"
+  },
+  {
+    "id": 9,
+    "title": "g3-architect-website",
+    "tags": [
+      "HTML5",
+      "CSS3",
+      "Architecture",
+      "Portfolio"
+    ],
+    "teacstack": [
+      "HTML5",
+      "CSS3",
+      "Responsive Design"
+    ],
+    "desc": "A modern architectural portfolio for the G3 Architect group.",
+    "longDesc": "The G3 Architect Website is a modern portfolio showcase created for a brand-new group of professional architects. It features a clean architectural layout that highlights professional designs and completed projects through high-quality visual sections. The site includes a dedicated facts section that displays credible statistics about awards won, projects finished, and clients served. Built with HTML5 and CSS3, the project is optimized for fast loading and provides a mobile-first user experience. The design includes a quick list of features and a sponsors section to establish industry authority for the firm.",
+    "starting_date": "Apr 3, 2026",
+    "finished_date": "Apr 10, 2026",
+    "link": "https://md-moynul.github.io/g3-architect-website/",
+    "githubFrontend": "https://github.com/md-moynul/g3-architect-website",
+    "githubBackend": null,
+    "features": [
+      "Architectural Grid Layout",
+      "Project Facts Counters",
+      "Sponsor Showcase",
+      "Mobile-First Design",
+      "Clean Hero Section"
+    ],
+    "img": "/images/g3-architect.png"
+  },
+  {
+    "id": 10,
+    "title": "Digtools platfrom",
+    "tags": [
+      "React",
+      "DaisyUI",
+      "Tailwind CSS"
+    ],
+    "teacstack": [
+      "React.js",
+      "Tailwind CSS",
+      "DaisyUI",
+      "JavaScript (ES6+)",
+      "React-Toastify",
+      "React use() Hook"
+    ],
+    "desc": "A React-based platform for buying AI-powered digital tools.",
+    "longDesc": "DigTools Platform is a React-based e-commerce solution specifically designed for browsing and purchasing premium AI digital tools. It features a dynamic product grid where information is fetched from external JSON data using the latest React use() hook. The application includes a real-time shopping cart with duplicate prevention alerts and automatic total price calculation. Users can toggle between a high-density product view and a dedicated cart management view using a sophisticated tabbed layout. With its fully responsive design and professional loading spinners, the platform provides a smooth checkout flow for digital tool seekers.",
+    "starting_date": "Mar 30, 2026",
+    "finished_date": "Apr 1, 2026",
+    "link": "https://dig-tools-platfrom.vercel.app/",
+    "githubFrontend": "https://github.com/md-moynul/DigTools-Platfrom",
+    "githubBackend": null,
+    "features": [
+      "JSON Data Integration",
+      "Real-time Cart Management",
+      "Toggle Product/Cart View",
+      "Duplicate Prevention Alerts",
+      "Responsive Design"
+    ],
+    "img": "/images/digtools.png"
+  },
+  {
+    "id": 11,
+    "title": "github issu traker",
+    "tags": [
+      "JavaScript",
+      "API",
+      "Utility"
+    ],
+    "teacstack": [
+      "JavaScript",
+      "GitHub API",
+      "HTML",
+      "CSS"
+    ],
+    "desc": "A tool to track and manage GitHub repository issues.",
+    "longDesc": "The GitHub Issue Tracker is a specialized utility tool developed to manage and track repository issues through a centralized interface. Users can sign in with administrative credentials to access a secure dashboard for overseeing project tasks and bugs. The application utilizes GitHub APIs to fetch and sync data directly from repositories in real-time. It is designed to simplify the developer workflow by organizing open issues and their current resolution status. This project serves as a functional tool for teams looking to streamline their issue management process efficiently.",
+    "starting_date": "Mar 7, 2026",
+    "finished_date": "Mar 9, 2026",
+    "link": "https://md-moynul.github.io/Github-Issue-Tracker/",
+    "githubFrontend": "https://md-moynul.github.io/Github-Issue-Tracker/",
+    "githubBackend": null,
+    "features": [
+      "GitHub API Sync",
+      "Secure Login Dashboard",
+      "Issue Status Tracking",
+      "Project Overview",
+      "Developer Tools"
+    ],
+    "img": "/images/issue-tracker.png"
+  },
+  {
+    "id": 12,
+    "title": "Tree store",
+    "tags": [
+      "HTML",
+      "JavaScript",
+      "E-commerce"
+    ],
+    "teacstack": [
+      "HTML",
+      "JavaScript",
+      "CSS"
+    ],
+    "desc": "An online plant store focused on environmental sustainability.",
+    "longDesc": "Tree Store is an online plant storefront dedicated to promoting environmental sustainability through the purchase of various trees. The platform features an extensive catalog of fruit-bearing and flowering trees with detailed specifications on growth and benefits. Each listing provides information about climate requirements and nutritional value to help home gardeners make informed choices. Users can filter products by category and manage their selections through an interactive shopping cart system. This project supports a global mission to plant one million trees and create a greener future for coming generations.",
+    "starting_date": "Mar 6, 2026",
+    "finished_date": "Mar 10, 2026",
+    "link": "https://md-moynul.github.io/tree-store/",
+    "githubFrontend": "https://github.com/md-moynul/tree-store",
+    "githubBackend": null,
+    "features": [
+      "Plant Catalog API",
+      "Category-based Filtering",
+      "Interactive Shopping Cart",
+      "Eco-friendly Mission",
+      "Detailed Plant Specs"
+    ],
+    "img": "/images/tree-store.png"
+  },
+  {
+    "id": 13,
+    "title": "English janala",
+    "tags": [
+      "HTML",
+      "JavaScript",
+      "Education"
+    ],
+    "teacstack": [
+      "HTML",
+      "Tailwind CSS",
+      "JavaScript"
+    ],
+    "desc": "An interactive web-based English learning platform for beginners.",
+    "longDesc": "English Janala is an interactive web-based learning platform designed to help beginners improve their English skills in an engaging way. The project focuses on providing structured, beginner-friendly lessons that cover essential vocabulary and basic grammar. It features a clean UI where students can practice exercises and explore an FAQ section for technical or language-related questions. The platform includes a simple authentication interface to track individual user progress and provide a personalized journey. Overall, the goal of English Janala is to make language education accessible and intuitive for learners at all levels.",
+    "starting_date": "Mar 3, 2026",
+    "finished_date": "Mar 6, 2026",
+    "link": "https://md-moynul.github.io/tree-store/",
+    "githubFrontend": "https://github.com/md-moynul/English-Janala",
+    "githubBackend": null,
+    "features": [
+      "Interactive Lessons",
+      "Vocabulary Learning System",
+      "Language FAQ Section",
+      "Simple Auth UI",
+      "Step-by-step Progression"
+    ],
+    "img": "/images/english-janala.png"
+  },
+  {
+    "id": 14,
+    "title": "Job traket",
+    "tags": [
+      "JavaScript",
+      "Career",
+      "DOM"
+    ],
+    "teacstack": [
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "DOM Manipulation"
+    ],
+    "desc": "A career management tool to organize job applications.",
+    "longDesc": "Job Tracker is a simple yet effective application designed to help job seekers organize their career mission by tracking applications. The interface provides a clear overview of available jobs and allows users to categorize them into sections like interviews or rejections. It features a clean UI with descriptions for each role, including requirements for technologies like React and Node.js. Job seekers can manage their search status and view detailed information such as salary ranges and company locations directly on the platform. Built with JavaScript DOM manipulation, the project handles dynamic updates to the job lists and status indicators.",
+    "starting_date": "Feb 23, 2026",
+    "finished_date": "Feb 24, 2026",
+    "link": "https://md-moynul.github.io/Job-Tracker/",
+    "githubFrontend": "https://github.com/md-moynul/Job-Tracker",
+    "githubBackend": null,
+    "features": [
+      "Application Status Tracking",
+      "Job Board Listings",
+      "DOM State Updates",
+      "Filter by Outcome",
+      "Company Details View"
+    ],
+    "img": "/images/job-tracker.png"
+  },
+  {
+    "id": 15,
+    "title": "pyoo bank",
+    "tags": [
+      "HTML",
+      "JavaScript",
+      "Fintech"
+    ],
+    "teacstack": [
+      "HTML",
+      "JavaScript",
+      "Tailwind CSS"
+    ],
+    "desc": "A banking interface for secure digital financial management.",
+    "longDesc": "Payoo Bank is a fintech-oriented banking interface designed to provide a secure environment for digital financial management. The application features a robust login system that validates user credentials before granting access to personal account dashboards. Users can perform various banking operations through the interface, including viewing balance information and managing transactions. The frontend is built using HTML and JavaScript with a focus on responsiveness to ensure the platform works on all screens. It also includes error handling logic to return specific feedback for invalid transaction amounts, ensuring data integrity.",
+    "starting_date": "Feb 16, 2026",
+    "finished_date": "Feb 21, 2026",
+    "link": "https://md-moynul.github.io/payoo-bank/",
+    "githubFrontend": "https://github.com/md-moynul/payoo-bank",
+    "githubBackend": null,
+    "features": [
+      "Secure Login Verification",
+      "Transaction Logging",
+      "Balance Management",
+      "Error Feedback System",
+      "Responsive Banking UI"
+    ],
+    "img": "/images/payoo-bank.png"
+  },
+  {
+    "id": 16,
+    "title": "Tea house",
+    "tags": [
+      "HTML",
+      "Tailwind CSS",
+      "Business"
+    ],
+    "teacstack": [
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "Responsive Design"
+    ],
+    "desc": "A responsive single-page website for a premium tea supplier.",
+    "longDesc": "The Tea House is a modern and elegant single-page website created for a premium supplier of tea and botanical solutions. It showcases a wide array of products including Milk Tea, Black Tea, and unique Green Tea blends for diverse tastes. The platform highlights the brand's commitment to quality by detailing the history and origins of their specialized tea services. Visitors can explore client testimonials, browse upcoming news and events, and subscribe to a newsletter for regular updates. Built with Tailwind CSS and HTML, the site is fully responsive and features smooth scrolling for a premium experience.",
+    "starting_date": "Feb 7, 2026",
+    "finished_date": "Feb 12, 2026",
+    "link": "https://md-moynul.github.io/tea-house/",
+    "githubFrontend": "https://github.com/md-moynul/tea-house",
+    "githubBackend": null,
+    "features": [
+      "Product Showcase Carousel",
+      "Client Testimonials",
+      "Events Calendar",
+      "Newsletter Subscription",
+      "Elegant Tailwind Design"
+    ],
+    "img": "/images/tea-house.png"
+  },
+  {
+    "id": 17,
+    "title": "Tach wave",
+    "tags": [
+      "Technology",
+      "Blog",
+      "Podcast"
+    ],
+    "teacstack": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "desc": "A hub for tech insights, productivity hacks, and podcast episodes.",
+    "longDesc": "TechWave is a technology-focused platform and podcast hub providing a daily dose of tech insights and productivity hacks. The site serves as a central repository for over 200 published episodes featuring interviews with industry leaders and startup founders. Users can access rich resources for every episode, including detailed show notes, transcripts, and additional learning materials. The platform is designed to be mobile-friendly, allowing a global community of listeners from over 120 countries to stay updated. Its clean interface emphasizes the discovery of trending tech topics like the future of AI and remote work strategies.",
+    "starting_date": "Jan 19, 2026",
+    "finished_date": "Jan 20, 2026",
+    "link": "https://md-moynul.github.io/TechWave/",
+    "githubFrontend": "https://github.com/md-moynul.github.io/TechWave/",
+    "githubBackend": null,
+    "features": [
+      "Podcast Episode Player",
+      "Resource Transcripts",
+      "Mobile-Friendly Design",
+      "Global Community Metrics",
+      "Topic Roadmaps"
+    ],
+    "img": "/images/techwave.png"
+  },
+  {
+    "id": 18,
+    "title": "Knowledge-Vault",
+    "tags": [
+      "Markdown",
+      "Library",
+      "Resource"
+    ],
+    "teacstack": [
+      "HTML",
+      "CSS",
+      "Markdown"
+    ],
+    "desc": "A centralized personal knowledge management system.",
+    "longDesc": "Knowledge Vault is a centralized learning hub designed to act as a 'second brain' for managing development notes and tutorials. The platform allows users to capture ideas with a built-in structure from day one, turning scattered notes into an interconnected web. It features a clean and scalable folder system that organizes knowledge storage by topics and resources for easy navigation. Built with a focus on productivity, it helps learners think more clearly by connecting related concepts automatically as they write. This project is ideal for developers and students who need a single source of truth for their evolving technical skills.",
+    "starting_date": "Jan 8, 2026",
+    "finished_date": "Jan 9, 2026",
+    "link": "https://md-moynul.github.io/Knowledge-Vault/",
+    "githubFrontend": "https://github.com/md-moynul/Knowledge-Vault",
+    "githubBackend": null,
+    "features": [
+      "Structured Folder System",
+      "Markdown-Based Notes",
+      "Interconnected Knowledge Graph",
+      "Search & Navigation",
+      "Scalable Data Storage"
+    ],
+    "img": "/images/knowledge-vault.png"
   }
 ]

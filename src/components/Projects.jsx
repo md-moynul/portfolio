@@ -67,11 +67,14 @@ const ProjectModal = ({ project, onClose }) => {
 
           {/* Content */}
           <div className="p-6 flex flex-col gap-4">
-            {/* Year + tags */}
+            {/* Date range + tags */}
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[10px] font-bold tracking-widest text-gray-500 dark:text-white/40 uppercase mr-2">
-                {project.year}
-              </span>
+              {(project.starting_date || project.finished_date) && (
+                <span className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-white/60 mr-2 flex items-center gap-1.5 bg-gray-100 dark:bg-white/5 px-2.5 py-1 rounded-md border border-gray-200 dark:border-white/10">
+                  <span className="material-symbols-outlined text-xs text-[#2D8CFF]">calendar_today</span>
+                  {project.starting_date} — {project.finished_date || "Present"}
+                </span>
+              )}
               {project.tags.map((tag) => (
                 <span
                   key={tag}
@@ -137,6 +140,15 @@ const ProjectModal = ({ project, onClose }) => {
                     <FaGithub /> Backend
                   </a>
                 </>
+              ) : project.githubFrontend ? (
+                <a
+                  href={project.githubFrontend}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-full font-bold text-xs flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 border border-gray-300 dark:border-white/15 transition-all"
+                >
+                  <FaGithub /> Frontend
+                </a>
               ) : project.github ? (
                 <a
                   href={project.github}
@@ -177,7 +189,16 @@ const ProjectCard = ({ project, onViewDetails }) => (
 
     {/* Body */}
     <div className="p-6 flex flex-col flex-grow">
-      {/* Tags */}
+      {/* Date badge + Tags */}
+      <div className="flex flex-wrap items-center gap-2 mb-3">
+        {(project.starting_date || project.finished_date) && (
+          <span className="text-[10px] font-bold text-gray-500 dark:text-zinc-400 flex items-center gap-1 bg-gray-100 dark:bg-white/5 px-2 py-0.5 rounded border border-gray-200 dark:border-white/10">
+            <span className="material-symbols-outlined text-xs text-[#2D8CFF]">calendar_today</span>
+            {project.starting_date} – {project.finished_date || "Present"}
+          </span>
+        )}
+      </div>
+
       <div className="flex flex-wrap gap-2 mb-4">
         {project.tags.map((tag) => (
           <span key={tag} className="text-[10px] font-bold tracking-[0.2em] text-[#2D8CFF]">
@@ -228,11 +249,20 @@ const ProjectCard = ({ project, onViewDetails }) => (
               href={project.githubBackend}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-2 border border-gray-300 dark:border-white/10 rounded-full text-gray-600 dark:text-[#zinc-300] font-bold text-xs flex items-center gap-1.5 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all"
+              className="px-3 py-2 border border-gray-300 dark:border-white/10 rounded-full text-gray-600 dark:text-zinc-300 font-bold text-xs flex items-center gap-1.5 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all"
             >
               <FaGithub /> Backend
             </a>
           </>
+        ) : project.githubFrontend ? (
+          <a
+            href={project.githubFrontend}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-2 border border-gray-300 dark:border-white/10 rounded-full text-gray-600 dark:text-zinc-300 font-bold text-xs flex items-center gap-1.5 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all"
+          >
+            <FaGithub /> Frontend
+          </a>
         ) : project.github ? (
           <a
             href={project.github}

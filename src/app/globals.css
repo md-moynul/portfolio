@@ -155,6 +155,32 @@
   box-shadow: 0 0 15px rgba(45, 140, 255, 0.2);
 }
 
+/* Premium timeline vertical line — light & dark */
+.timeline-line {
+  border-left: 2px solid;
+  border-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #c7d2fe 10%,
+    #818cf8 40%,
+    #6366f1 60%,
+    #c7d2fe 90%,
+    transparent 100%
+  ) 1;
+}
+
+.dark .timeline-line {
+  border-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #1e3a5f 10%,
+    #2D8CFF 40%,
+    #a9c7ff 60%,
+    #1e3a5f 90%,
+    transparent 100%
+  ) 1;
+}
+
 @keyframes blob {
   0% {
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;

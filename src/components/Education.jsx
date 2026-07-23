@@ -31,7 +31,7 @@ const Education = () => (
         </h2>
 
         {/* Timeline */}
-        <div className="relative pl-8 border-l-2 border-surface-container-highest flex flex-col gap-8">
+        <div className="relative pl-8 timeline-line flex flex-col gap-8">
 
           {/* Diploma Entry */}
           <div className="relative">

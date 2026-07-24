@@ -67,7 +67,7 @@ const Navbar = () => {
               alt="Logo"
               width={140}
               height={32}
-              className="h-7 md:h-8 w-auto object-contain transition-transform group-hover:scale-105"
+              className="h-7 md:h-8 w-auto object-contain transition-transform group-hover:scale-105 dark:brightness-200 dark:contrast-125 dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
             />
           </a>
 

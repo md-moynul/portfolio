@@ -100,13 +100,15 @@ const Hero = () => {
             </motion.a>
 
             <motion.a
-              href="mailto:mdoynulislam.dev@gmail.com"
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
               className="px-6 py-3 rounded-full text-gray-900 dark:text-white font-bold text-sm flex items-center gap-2 border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition-all backdrop-blur-sm"
             >
-              Hire Me
-              <span className="material-symbols-outlined text-sm">send</span>
+              View Resume
+              <span className="material-symbols-outlined text-sm">description</span>
             </motion.a>
 
             <div className="flex items-center gap-2">

@@ -1,9 +1,30 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "./Animations";
 
 const About = () => {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const options = {
+        timeZone: "Asia/Dhaka",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      };
+      setTime(now.toLocaleTimeString("en-US", options));
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       className="py-16 md:py-[120px] px-5 md:px-8 bg-transparent transition-colors"
@@ -12,12 +33,30 @@ const About = () => {
       <div className="max-w-7xl mx-auto">
 
         {/* Section Header */}
-        <motion.div {...fadeInUp} className="mb-16">
-          <p className="font-display text-2xl text-gray-500 dark:text-zinc-400 leading-tight max-w-3xl text-left md:text-justify hyphens-auto">
-            Merging{" "}
-            <span className="text-gradient">clean architecture</span> with{" "}
-            <span className="text-gradient">intuitive design</span>.
-          </p>
+        <motion.div {...fadeInUp} className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <p className="font-display text-2xl text-gray-500 dark:text-zinc-400 leading-tight max-w-3xl text-left md:text-justify hyphens-auto">
+              Merging{" "}
+              <span className="text-gradient">clean architecture</span> with{" "}
+              <span className="text-gradient">intuitive design</span>.
+            </p>
+          </div>
+
+          {/* Sticky Local Time Zone Widget */}
+          <div className="flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/70 dark:bg-zinc-900/70 border border-gray-200 dark:border-white/10 backdrop-blur-md shadow-sm self-start md:self-auto">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            </span>
+            <div className="flex flex-col">
+              <span className="text-[10px] uppercase font-bold tracking-widest text-gray-400 dark:text-zinc-500">
+                Local Time (BST / UTC+6)
+              </span>
+              <span className="text-sm font-mono font-bold text-gray-900 dark:text-white">
+                {time || "16:17:01 PM"}
+              </span>
+            </div>
+          </div>
         </motion.div>
 
         {/* Main Grid */}
@@ -54,8 +93,11 @@ const About = () => {
                 </span>
                 , I leverage the power of the React ecosystem to transform
                 complex requirements into elegant, high-performance digital
-                solutions. I believe that professional software should be as
-                beautiful as it is functional.
+                solutions. Beyond coding, I am deeply passionate about{" "}
+                <span className="font-bold text-emerald-500 dark:text-emerald-400">
+                  Farming 🌱
+                </span>
+                — cultivate discipline, patience, and sustainable growth both in fields and software.
               </p>
             </div>
 
@@ -118,7 +160,7 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* ── Location Card ── */}
+          {/* ── Location & Contact Card ── */}
           <motion.div
             variants={fadeInUp}
             className="lg:col-span-4 glass-card p-6 md:p-8 rounded-3xl flex flex-col items-center justify-center text-center gap-4 group"
@@ -128,12 +170,19 @@ const About = () => {
             </div>
             <div>
               <h3 className="font-bold text-gray-900 dark:text-white text-xl">
-                Location
+                Location & Contact
               </h3>
               <p className="text-gray-500 dark:text-zinc-500 text-sm mt-1">
                 Rangpur, Bangladesh
               </p>
-              <p className="text-[11px] font-mono text-gray-400 dark:text-zinc-600 mt-1 tracking-widest uppercase">
+              <a
+                href="tel:+8801746568176"
+                className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#2D8CFF] hover:underline mt-2 bg-[#2D8CFF]/10 px-3 py-1 rounded-full border border-[#2D8CFF]/20"
+              >
+                <span className="material-symbols-outlined text-sm">call</span>
+                +880 1746-568176
+              </a>
+              <p className="text-[11px] font-mono text-gray-400 dark:text-zinc-600 mt-2 tracking-widest uppercase">
                 UTC +6 · Remote Ready
               </p>
             </div>

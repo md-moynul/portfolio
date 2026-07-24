@@ -3,10 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Typewriter from "typewriter-effect";
-import { FaLinkedin, FaGithub, FaFacebook, FaEnvelope } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaFacebook, FaEnvelope, FaPhone, FaWhatsapp } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
-
-
 
 /* ── Hero ── */
 const Hero = () => {
@@ -14,6 +12,8 @@ const Hero = () => {
   const socials = [
     { icon: <FaLinkedin className="text-lg" />, href: "https://www.linkedin.com/in/md-moynul-islam47/", hov: "hover:text-[#0A66C2]" },
     { icon: <FaEnvelope className="text-lg" />, href: "mailto:mdoynulislam.dev@gmail.com", hov: "hover:text-[#EA4335]" },
+    { icon: <FaPhone className="text-base" />, href: "tel:+8801746568176", hov: "hover:text-[#2D8CFF]" },
+    { icon: <FaWhatsapp className="text-lg" />, href: "https://wa.me/8801746568176", hov: "hover:text-[#25D366]" },
     { icon: <FaGithub className="text-lg" />, href: "https://github.com/md-moynul", hov: "hover:text-gray-900 dark:hover:text-white" },
     { icon: <FaFacebook className="text-lg" />, href: "https://www.facebook.com/mdmoynulislam8", hov: "hover:text-[#1877F2]" },
   ];

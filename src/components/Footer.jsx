@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaFacebook, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaFacebook, FaEnvelope, FaPhone, FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => (
   <footer className="relative w-full py-20 border-t border-gray-200 dark:border-white/5 bg-white dark:bg-[#0A0A0B] overflow-hidden transition-colors">
@@ -23,6 +23,8 @@ const Footer = () => (
             {[
               { icon: <FaGithub />, href: "https://github.com/md-moynul" },
               { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/md-moynul-islam47/" },
+              { icon: <FaPhone />, href: "tel:+8801746568176" },
+              { icon: <FaWhatsapp />, href: "https://wa.me/8801746568176" },
               { icon: <FaFacebook />, href: "https://www.facebook.com/mdmoynulislam8" },
               { icon: <FaEnvelope />, href: "mailto:mdoynulislam.dev@gmail.com" },
             ].map((social, i) => (

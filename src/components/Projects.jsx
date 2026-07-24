@@ -67,7 +67,7 @@ const ProjectModal = ({ project, onClose }) => {
           </div>
 
           {/* Content Body */}
-          <div className="p-6 md:p-8 flex-1 overflow-y-auto flex flex-col gap-6 -mt-8 relative z-10">
+          <div data-lenis-prevent="true" className="p-6 md:p-8 flex-1 overflow-y-auto flex flex-col gap-6 -mt-8 relative z-10">
             {/* Header info */}
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-3">

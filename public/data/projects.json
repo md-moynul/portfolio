@@ -293,36 +293,6 @@
   },
   {
     "id": 9,
-    "title": "g3-architect-website",
-    "tags": [
-      "HTML5",
-      "CSS3",
-      "Architecture",
-      "Portfolio"
-    ],
-    "teacstack": [
-      "HTML5",
-      "CSS3",
-      "Responsive Design"
-    ],
-    "desc": "A modern architectural portfolio for the G3 Architect group.",
-    "longDesc": "The G3 Architect Website is a modern portfolio showcase created for a brand-new group of professional architects. It features a clean architectural layout that highlights professional designs and completed projects through high-quality visual sections. The site includes a dedicated facts section that displays credible statistics about awards won, projects finished, and clients served. Built with HTML5 and CSS3, the project is optimized for fast loading and provides a mobile-first user experience. The design includes a quick list of features and a sponsors section to establish industry authority for the firm.",
-    "starting_date": "Apr 3, 2026",
-    "finished_date": "Apr 10, 2026",
-    "link": "https://md-moynul.github.io/g3-architect-website/",
-    "githubFrontend": "https://github.com/md-moynul/g3-architect-website",
-    "githubBackend": null,
-    "features": [
-      "Architectural Grid Layout",
-      "Project Facts Counters",
-      "Sponsor Showcase",
-      "Mobile-First Design",
-      "Clean Hero Section"
-    ],
-    "img": "/images/g3-architect.png"
-  },
-  {
-    "id": 10,
     "title": "Digtools platfrom",
     "tags": [
       "React",
@@ -354,7 +324,7 @@
     "img": "/images/digtools.png"
   },
   {
-    "id": 11,
+    "id": 10,
     "title": "github issu traker",
     "tags": [
       "JavaScript",
@@ -384,7 +354,7 @@
     "img": "/images/issue-tracker.png"
   },
   {
-    "id": 12,
+    "id": 11,
     "title": "Tree store",
     "tags": [
       "HTML",
@@ -413,7 +383,7 @@
     "img": "/images/tree-store.png"
   },
   {
-    "id": 13,
+    "id": 12,
     "title": "English janala",
     "tags": [
       "HTML",
@@ -429,7 +399,7 @@
     "longDesc": "English Janala is an interactive web-based learning platform designed to help beginners improve their English skills in an engaging way. The project focuses on providing structured, beginner-friendly lessons that cover essential vocabulary and basic grammar. It features a clean UI where students can practice exercises and explore an FAQ section for technical or language-related questions. The platform includes a simple authentication interface to track individual user progress and provide a personalized journey. Overall, the goal of English Janala is to make language education accessible and intuitive for learners at all levels.",
     "starting_date": "Mar 3, 2026",
     "finished_date": "Mar 6, 2026",
-    "link": "https://md-moynul.github.io/tree-store/",
+    "link": "https://md-moynul.github.io/English-Janala/",
     "githubFrontend": "https://github.com/md-moynul/English-Janala",
     "githubBackend": null,
     "features": [
@@ -442,8 +412,8 @@
     "img": "/images/english-janala.png"
   },
   {
-    "id": 14,
-    "title": "Job traket",
+    "id": 13,
+    "title": "Job traker",
     "tags": [
       "JavaScript",
       "Career",
@@ -472,7 +442,7 @@
     "img": "/images/job-tracker.png"
   },
   {
-    "id": 15,
+    "id": 14,
     "title": "pyoo bank",
     "tags": [
       "HTML",
@@ -501,7 +471,7 @@
     "img": "/images/payoo-bank.png"
   },
   {
-    "id": 16,
+    "id": 15,
     "title": "Tea house",
     "tags": [
       "HTML",
@@ -531,6 +501,36 @@
     "img": "/images/tea-house.png"
   },
   {
+    "id": 16,
+    "title": "g3-architect-website",
+    "tags": [
+      "HTML5",
+      "CSS3",
+      "Architecture",
+      "Portfolio"
+    ],
+    "teacstack": [
+      "HTML5",
+      "CSS3",
+      "Responsive Design"
+    ],
+    "desc": "A modern architectural portfolio for the G3 Architect group.",
+    "longDesc": "The G3 Architect Website is a modern portfolio showcase created for a brand-new group of professional architects. It features a clean architectural layout that highlights professional designs and completed projects through high-quality visual sections. The site includes a dedicated facts section that displays credible statistics about awards won, projects finished, and clients served. Built with HTML5 and CSS3, the project is optimized for fast loading and provides a mobile-first user experience. The design includes a quick list of features and a sponsors section to establish industry authority for the firm.",
+    "starting_date": "Jan 22, 2026",
+    "finished_date": "Jan 29, 2026",
+    "link": "https://md-moynul.github.io/g3-architect-website/",
+    "githubFrontend": "https://github.com/md-moynul/g3-architect-website",
+    "githubBackend": null,
+    "features": [
+      "Architectural Grid Layout",
+      "Project Facts Counters",
+      "Sponsor Showcase",
+      "Mobile-First Design",
+      "Clean Hero Section"
+    ],
+    "img": "/images/g3-architect.png"
+  },
+  {
     "id": 17,
     "title": "Tach wave",
     "tags": [
@@ -557,7 +557,7 @@
       "Global Community Metrics",
       "Topic Roadmaps"
     ],
-    "img": "/images/techwave.png"
+    "img": "/images/techWave.png"
   },
   {
     "id": 18,

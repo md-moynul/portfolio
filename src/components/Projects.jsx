@@ -25,7 +25,7 @@ const ProjectModal = ({ project, onClose }) => {
 
   return (
     <AnimatePresence>
-      {/* Dynamic Backdrop for Light / Dark Mode */}
+      {/* Dynamic Backdrop */}
       <motion.div
         key="backdrop"
         initial={{ opacity: 0 }}
@@ -33,92 +33,97 @@ const ProjectModal = ({ project, onClose }) => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.25 }}
         onClick={onClose}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/40 dark:bg-black/70 backdrop-blur-md"
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-black/60 dark:bg-black/80 backdrop-blur-md"
       >
         {/* Dynamic Modal Card */}
         <motion.div
           key="modal"
-          initial={{ opacity: 0, scale: 0.92, y: 24 }}
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.92, y: 24 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-gray-200 dark:border-white/15 shadow-2xl dark:shadow-[0_24px_80px_rgba(0,0,0,0.7)]"
+          className="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-3xl bg-white dark:bg-[#12131A] border border-gray-200 dark:border-white/10 shadow-2xl overflow-hidden"
         >
           {/* Close button */}
           <button
             onClick={onClose}
             aria-label="Close modal"
-            className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full flex items-center justify-center text-gray-500 dark:text-white/60 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-white/10 transition-all"
+            className="sticky top-3 right-3 self-end z-50 -mb-10 mr-3 w-10 h-10 rounded-full flex items-center justify-center bg-black/50 hover:bg-black/70 text-white backdrop-blur-md border border-white/20 transition-all duration-200 shadow-lg hover:scale-105"
           >
             <span className="material-symbols-outlined text-xl">close</span>
           </button>
 
-          {/* Project image */}
-          <div className="h-44 w-full overflow-hidden rounded-t-2xl">
+          {/* Project Header Image */}
+          <div className="relative h-56 md:h-72 w-full overflow-hidden flex-shrink-0 bg-gray-900">
             <Image
               src={project.img}
               alt={project.title}
-              width={800}
-              height={400}
+              width={1000}
+              height={500}
               className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#12131A] via-transparent to-black/30" />
           </div>
 
-          {/* Content */}
-          <div className="p-6 flex flex-col gap-4">
-            {/* Date range + tags */}
-            <div className="flex flex-wrap items-center gap-2">
-              {(project.starting_date || project.finished_date) && (
-                <span className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-white/60 mr-2 flex items-center gap-1.5 bg-gray-100 dark:bg-white/5 px-2.5 py-1 rounded-md border border-gray-200 dark:border-white/10">
-                  <span className="material-symbols-outlined text-xs text-[#2D8CFF]">calendar_today</span>
-                  {project.starting_date} — {project.finished_date || "Present"}
-                </span>
-              )}
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 text-[10px] font-bold tracking-widest rounded-full uppercase bg-[#2D8CFF]/10 text-[#2D8CFF] border border-[#2D8CFF]/25"
-                >
-                  {tag}
-                </span>
-              ))}
+          {/* Content Body */}
+          <div className="p-6 md:p-8 flex-1 overflow-y-auto flex flex-col gap-6 -mt-8 relative z-10">
+            {/* Header info */}
+            <div>
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                {(project.starting_date || project.finished_date) && (
+                  <span className="text-[11px] font-semibold text-gray-500 dark:text-zinc-400 flex items-center gap-1.5 bg-gray-100 dark:bg-white/5 px-3 py-1 rounded-full border border-gray-200 dark:border-white/10">
+                    <span className="material-symbols-outlined text-xs text-[#2D8CFF]">calendar_today</span>
+                    {project.starting_date} — {project.finished_date || "Present"}
+                  </span>
+                )}
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 text-[10px] font-bold tracking-wider rounded-full uppercase bg-[#2D8CFF]/10 text-[#2D8CFF] border border-[#2D8CFF]/20"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <h3 className="font-bold text-2xl md:text-3xl text-gray-900 dark:text-white tracking-tight">
+                {project.title}
+              </h3>
             </div>
 
-            {/* Title */}
-            <h3 className="font-h2 text-2xl text-gray-900 dark:text-white">{project.title}</h3>
-
             {/* Long description */}
-            <p className="text-gray-600 dark:text-white/70 text-sm leading-relaxed">
-              {project.longDesc}
-            </p>
+            <div className="text-gray-600 dark:text-zinc-300 text-sm md:text-base leading-relaxed space-y-2">
+              <p>{project.longDesc}</p>
+            </div>
 
-            {/* Features */}
+            {/* Key Features Grid */}
             {project.features?.length > 0 && (
-              <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-white/40 mb-3">
-                  Key Features
-                </p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {project.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-gray-700 dark:text-white/70">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#2D8CFF] flex-shrink-0" />
-                      {f}
+              <div className="bg-gray-50 dark:bg-white/[0.03] p-5 rounded-2xl border border-gray-100 dark:border-white/5">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-zinc-400 mb-3 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-sm text-[#2D8CFF]">stars</span>
+                  Key Features & Highlights
+                </h4>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {project.features.map((f, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-gray-700 dark:text-zinc-300">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#2D8CFF] mt-2 flex-shrink-0" />
+                      <span>{f}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             )}
 
-            {/* CTA buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-gray-200 dark:border-white/10">
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-gray-100 dark:border-white/10 mt-auto">
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-full font-bold text-xs flex items-center gap-2 text-white bg-[#2D8CFF] hover:bg-[#2D8CFF]/90 transition-all"
+                className="px-6 py-3 rounded-full font-bold text-xs flex items-center gap-2 text-white bg-[#2D8CFF] hover:bg-[#1f73df] transition-all duration-300 shadow-[0_8px_20px_rgba(45,140,255,0.3)] hover:shadow-[0_12px_25px_rgba(45,140,255,0.4)] hover:-translate-y-0.5"
               >
-                Live Demo <span className="material-symbols-outlined text-sm">arrow_outward</span>
+                Live Preview <span className="material-symbols-outlined text-sm">arrow_outward</span>
               </a>
 
               {project.githubFrontend && project.githubBackend ? (
@@ -127,17 +132,17 @@ const ProjectModal = ({ project, onClose }) => {
                     href={project.githubFrontend}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2.5 rounded-full font-bold text-xs flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 border border-gray-300 dark:border-white/15 transition-all"
+                    className="px-5 py-3 rounded-full font-bold text-xs flex items-center gap-2 text-gray-700 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-white bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 transition-all duration-300 hover:-translate-y-0.5"
                   >
-                    <FaGithub /> Frontend
+                    <FaGithub /> Frontend Code
                   </a>
                   <a
                     href={project.githubBackend}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2.5 rounded-full font-bold text-xs flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 border border-gray-300 dark:border-white/15 transition-all"
+                    className="px-5 py-3 rounded-full font-bold text-xs flex items-center gap-2 text-gray-700 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-white bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 transition-all duration-300 hover:-translate-y-0.5"
                   >
-                    <FaGithub /> Backend
+                    <FaGithub /> Backend Code
                   </a>
                 </>
               ) : project.githubFrontend ? (
@@ -145,20 +150,28 @@ const ProjectModal = ({ project, onClose }) => {
                   href={project.githubFrontend}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-full font-bold text-xs flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 border border-gray-300 dark:border-white/15 transition-all"
+                  className="px-5 py-3 rounded-full font-bold text-xs flex items-center gap-2 text-gray-700 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-white bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 transition-all duration-300 hover:-translate-y-0.5"
                 >
-                  <FaGithub /> Frontend
+                  <FaGithub /> Source Code
                 </a>
               ) : project.github ? (
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-full font-bold text-xs flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 border border-gray-300 dark:border-white/15 transition-all"
+                  className="px-5 py-3 rounded-full font-bold text-xs flex items-center gap-2 text-gray-700 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-white bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 transition-all duration-300 hover:-translate-y-0.5"
                 >
-                  <FaGithub /> GitHub
+                  <FaGithub /> Source Code
                 </a>
               ) : null}
+
+              {/* Explicit Close Button for Mobile UX */}
+              <button
+                onClick={onClose}
+                className="px-5 py-3 rounded-full font-bold text-xs flex items-center gap-1.5 text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 transition-all duration-300 ml-auto"
+              >
+                <span className="material-symbols-outlined text-sm">close</span> Close
+              </button>
             </div>
           </div>
         </motion.div>

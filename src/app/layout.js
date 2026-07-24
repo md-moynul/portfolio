@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTop from "@/components/ScrollToTop";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -24,7 +25,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable} scroll-smooth `} suppressHydrationWarning>
+    <html lang="en" className={`${manrope.variable} ${inter.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="antialiased" suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <SmoothScroll />
           <ScrollProgress />
           <ScrollToTop />
           <CustomCursor />

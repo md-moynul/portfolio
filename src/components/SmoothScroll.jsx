@@ -6,13 +6,14 @@ import Lenis from "@studio-freight/lenis";
 const SmoothScroll = () => {
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.15, // Higher lerp = more immediate
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: "vertical",
       gestureDirection: "vertical",
-      smoothHover: true,
       smoothWheel: true,
-      wheelMultiplier: 1.5, 
-      touchMultiplier: 2.5,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 1.5,
     });
 
     function raf(time) {
@@ -20,14 +21,10 @@ const SmoothScroll = () => {
       requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
-
-    // Integrate with Framer Motion or other libraries if needed
-    lenis.on('scroll', () => {
-      // Custom logic on scroll if needed
-    });
+    const animationFrameId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(animationFrameId);
       lenis.destroy();
     };
   }, []);
